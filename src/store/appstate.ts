@@ -1,24 +1,25 @@
 import store from ".";
-import { DataTest } from "../interface";
-
+import { UserInterface } from "../interface";
+import { DataLogin } from "../request/interface/UserRespository";
 
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;
 
-
 //State gốc
 export interface AppState {
-    dataTest: DataTest;
+    userState: UserState;
 }
 
-
+export interface UserState {
+    user?: UserInterface;
+}
 
 export interface Action {
     type: string;
-    payload?: any;
+    user?: UserInterface;
+    dataLogin?: DataLogin;
 }
-
 
 export const initStateRedux: AppState = {
-    dataTest: {count: 0}
-}
+    userState: { user: undefined },
+};

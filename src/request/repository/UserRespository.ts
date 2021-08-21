@@ -2,40 +2,32 @@ import ClientAPI from "../UserClient";
 import UserRepositoryInterface, {
     DataLogin,
     DataRegister,
+    DataChangePassword,
 } from "../interface/UserRespository";
 
-const resource = "api";
+const resource = "user";
 
-const signUp = (data: DataRegister) => {
+const register = (data: DataRegister) => {
     return ClientAPI(false).post(`${resource}/register`, data);
 };
 
-const signIn = (data: DataLogin) => {
+const login = (data: DataLogin) => {
     return ClientAPI(false).post(`${resource}/login`, data);
 };
 
-const changePassword = (data: string) => {
-    return ClientAPI(true).post(`${resource}/change-pass`, {
+const changePassword = (data: DataChangePassword) => {
+    return ClientAPI(true).post(`${resource}/change-password`, {
         newPass: data,
     });
 };
 
 const getProfile = () => {
-    return ClientAPI(true).post(`${resource}/get-user-from-token`, {});
+    return ClientAPI(true).post(`${resource}/profile`);
 };
-// const Logout = () => {
-//     return Client(true).get(`${resource}/logout/`);
-// }
-// const EditProfile = (data) => {
-//     return Client(true).put(`${resource}/profile/`, data);
-// }
 
-// const ChangeAvatar = (data) => {
-//     return Client(true).put(`${resource}/change-avatar/`, data)
-// }
 const userRepository: UserRepositoryInterface = {
-    signIn: signIn,
-    signUp: signUp,
+    login: login,
+    register: register,
     getProfile: getProfile,
     changePassword: changePassword,
 };

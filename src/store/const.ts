@@ -1,3 +1,4 @@
-export const ADDITION_COUNR_ONE = "ADDITION_COUNR_ONE"
-export const SUBTRACTION_COUNR_ONE = "SUBTRACTION_ONE"
-export const RESET_COUNT = "RESET_COUNT"
+export const SET_USER = "SET_USER";
+export const CLEAR_USER = "CLEAR_USER";
+
+export const SET_LOGIN = "SET_LOGIN";
