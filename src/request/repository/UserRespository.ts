@@ -1,4 +1,4 @@
-import ClientAPI from "../UserClient";
+import ClientAPI from "../ClientAPI";
 import UserRepositoryInterface, {
     DataLogin,
     DataRegister,
