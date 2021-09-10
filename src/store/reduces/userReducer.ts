@@ -1,6 +1,6 @@
 import { SET_USER, CLEAR_USER } from "../const";
 import { Reducer } from "redux";
-import { Action, UserState } from "../appstate";
+import { Action, UserState } from "../../interface/redux";
 
 const initialState: UserState = {};
 

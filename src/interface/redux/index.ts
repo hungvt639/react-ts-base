@@ -1,6 +1,6 @@
-import store from ".";
-import { UserInterface } from "../interface";
-import { DataLogin } from "../request/interface/UserRespository";
+import store from "../../store";
+import { UserInterface } from "..";
+import { DataLogin } from "../request/UserRespository";
 
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;

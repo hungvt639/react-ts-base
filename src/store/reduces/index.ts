@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { Action, AppState } from "../appstate";
+import { Action, AppState } from "../../interface/redux";
 import { ReducersMapObject } from "redux";
 import userReduce from "./userReducer";
 

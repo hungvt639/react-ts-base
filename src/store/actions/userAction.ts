@@ -1,6 +1,6 @@
 import { UserInterface } from "../../interface";
-import { DataLogin } from "../../request/interface/UserRespository";
-import { Action } from "../appstate";
+import { DataLogin } from "../../interface/request/UserRespository";
+import { Action } from "../../interface/redux";
 import { SET_USER, CLEAR_USER, SET_LOGIN } from "../const";
 
 export const setUser = (user: UserInterface): Action => {
