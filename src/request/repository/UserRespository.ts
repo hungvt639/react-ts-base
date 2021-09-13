@@ -3,7 +3,7 @@ import UserRepositoryInterface, {
     DataLogin,
     DataRegister,
     DataChangePassword,
-} from "../interface/UserRespository";
+} from "../../interface/request/UserRespository";
 
 const resource = "user";
 
