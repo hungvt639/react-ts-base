@@ -2,7 +2,7 @@ import { all, call, put, take, fork } from "redux-saga/effects";
 import {
     DataLogin,
     ResponseLogin,
-} from "../../request/interface/UserRespository";
+} from "../../interface/request/UserRespository";
 import { SET_LOGIN } from "../const";
 import API from "../../request";
 import { AxiosResponse } from "axios";
