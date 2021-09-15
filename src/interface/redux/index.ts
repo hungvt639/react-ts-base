@@ -7,19 +7,19 @@ export type RootState = ReturnType<typeof store.getState>;
 
 //State gốc
 export interface AppState {
-    userState: UserState;
+  userState: UserState;
 }
 
 export interface UserState {
-    user?: UserInterface;
+  user?: UserInterface;
 }
 
 export interface Action {
-    type: string;
-    user?: UserInterface;
-    dataLogin?: DataLogin;
+  type: string;
+  user?: UserInterface;
+  dataLogin?: DataLogin;
 }
 
 export const initStateRedux: AppState = {
-    userState: { user: undefined },
+  userState: { user: undefined },
 };
