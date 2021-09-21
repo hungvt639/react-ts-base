@@ -1,46 +1,74 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { setUser } from "../../../store/actions/userAction";
-import { useHistory } from "react-router-dom";
-import { HOME } from "../../router/const";
-import API from "../../../request";
-import { message } from "antd";
-import { errorAPI } from "../../utils/Error";
-const Login = () => {
-  const [username, setUsername] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const dispatch = useDispatch();
-  const history = useHistory();
-  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    API.user
-      .login({ username, password })
-      .then((res) => {
-        localStorage.setItem("token", res.data.token);
-        dispatch(setUser(res.data.user));
-        history.push(HOME);
-        message.success("Đăng nhập thành công");
-      })
-      .catch(errorAPI);
-  }
-  return (
-    <form onSubmit={(e) => onSubmit(e)}>
-      <label>
-        Tên đăng nhập:
-        <input value={username} onChange={(e) => setUsername(e.target.value)} />
-      </label>
-      <br />
-      <label>
-        Mật khẩu:
-        <input
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          type="password"
-        />
-      </label>
-      <br />
-      <button type="submit">Đăng nhập</button>
-    </form>
-  );
+import React, { useState, Fragment } from "react";
+import { REGISTER, RESET_PASSWORD } from "../../router/const";
+import { Link } from "react-router-dom";
+import "./login.scss";
+
+const LoginForm: React.FC = () => {
+    const [username, setUsername] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
+    const [valiUsername, setValiUsername] = useState<boolean>(false);
+    const [valiPassword, setValiPassword] = useState<boolean>(false);
+    function onSubmit(e: React.FormEvent) {
+        e.preventDefault();
+        setValiUsername(!username);
+        setValiPassword(!password);
+        if (username && password) {
+            const data = { username: username, password: password };
+            console.log(data);
+        }
+    }
+
+    return (
+        <div className="forms_">
+            <h1>Đăng nhập</h1>
+            <form onSubmit={(e) => onSubmit(e)} className="form_">
+                <label>
+                    Tài khoản đăng nhập (*)
+                    <br />
+                    <input
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        type="text"
+                        name="username"
+                        placeholder="Tài khoản đăng nhập"
+                    />
+                    {valiUsername ? (
+                        <p className="form-mess-err">
+                            Tài khoản không được để trống!
+                        </p>
+                    ) : (
+                        <Fragment />
+                    )}
+                </label>
+
+                <label>
+                    Mật khẩu (*)
+                    <br />
+                    <input
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        type="password"
+                        name="password"
+                        placeholder="Mật khẩu"
+                        autoComplete="on"
+                    />
+                    {valiPassword ? (
+                        <p className="form-mess-err">
+                            Mật khẩu không được để trống!
+                        </p>
+                    ) : (
+                        <Fragment />
+                    )}
+                </label>
+                <div className="forgot-password">
+                    <Link to={RESET_PASSWORD}>Quên mật khẩu</Link>
+                </div>
+                <button type="submit">Đăng nhập</button>
+                <p className="form-has-user">
+                    Không có tài khoản <Link to={REGISTER}>Đăng ký ngay</Link>
+                </p>
+            </form>
+        </div>
+    );
 };
-export default Login;
+export default LoginForm;

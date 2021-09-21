@@ -1,0 +1,35 @@
+.forms_ {
+    display: block;
+    h1 {
+        text-align: center;
+        color: #5b5b5b;
+        margin-bottom: 0;
+        .form_ {
+            display: flex;
+            flex-direction: column;
+            margin: 0 80px 50px;
+            label {
+                margin: 15px 0 5px;
+            }
+            input {
+                width: 100%;
+                /* padding: 10px 15px; */
+                border: 10px solid #fff;
+                border-radius: 5px;
+                box-shadow: 0 2px 5px rgb(126, 153, 163);
+                color: #000;
+                background-color: #fff;
+                margin-top: 15px;
+                font-weight: 700;
+            }
+            input:active,
+            input:focus {
+                box-shadow: 0 0 5px #ccc;
+                opacity: 1 !important;
+                outline: 0;
+                color: #333;
+                background-color: #fff;
+            }
+        }
+    }
+}

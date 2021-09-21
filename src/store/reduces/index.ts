@@ -4,7 +4,7 @@ import { ReducersMapObject } from "redux";
 import userReduce from "./userReducer";
 
 const map: ReducersMapObject<AppState, Action> = {
-  userState: userReduce,
+    userState: userReduce,
 };
 
 const reducer = combineReducers(map);

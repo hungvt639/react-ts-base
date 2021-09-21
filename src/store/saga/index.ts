@@ -2,7 +2,7 @@
 import { all } from "typed-redux-saga";
 // import userSaga from "./userSaga";
 function* mySaga() {
-  yield all([]);
+    yield all([]);
 }
 
 export default mySaga;
