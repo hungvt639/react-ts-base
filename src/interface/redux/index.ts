@@ -12,14 +12,16 @@ export interface AppState {
 
 export interface UserState {
     user?: UserInterface;
+    token?: string | null;
 }
 
 export interface Action {
     type: string;
     user?: UserInterface;
+    token?: string | null;
     dataLogin?: DataLogin;
 }
 
-export const initStateRedux: AppState = {
-    userState: { user: undefined },
-};
+// export const initStateRedux: AppState = {
+//     userState: { user: undefined, token: localStorage.getItem("token") },
+// };

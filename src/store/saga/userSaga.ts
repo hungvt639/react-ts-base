@@ -10,7 +10,7 @@ import { setUser } from "../actions/userAction";
 
 function* login(data: DataLogin) {
     const res: AxiosResponse<ResponseLogin> = yield call(API.user.login, data);
-    yield put(setUser(res.data.user));
+    yield put(setUser(res.data.user, res.data.token));
     localStorage.setItem("token", res.data.token);
     console.log("login success", res.data);
 }
