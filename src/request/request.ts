@@ -1,5 +1,4 @@
 import axios from "axios";
-// import urls from '../const';
 const http = require("http");
 const https = require("https");
 

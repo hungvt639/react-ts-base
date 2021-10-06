@@ -3,6 +3,9 @@ import UserRepositoryInterface, {
     DataLogin,
     DataRegister,
     DataChangePassword,
+    DataActivateUser,
+    DataSendResetPassword,
+    DataResetPassword,
 } from "../../interface/request/UserRespository";
 
 const resource = "user";
@@ -11,8 +14,20 @@ const register = (data: DataRegister) => {
     return ClientAPI(false).post(`${resource}/register`, data);
 };
 
+const activateUser = (data: DataActivateUser) => {
+    return ClientAPI(false).post(`${resource}/active_user`, data);
+};
+
 const login = (data: DataLogin) => {
     return ClientAPI(false).post(`${resource}/login`, data);
+};
+
+const sendResetPassword = (data: DataSendResetPassword) => {
+    return ClientAPI(false).post(`${resource}/send-reset-password`, data);
+};
+
+const resetPassword = (data: DataResetPassword) => {
+    return ClientAPI(false).post(`${resource}/reset-password`, data);
 };
 
 const changePassword = (data: DataChangePassword) => {
@@ -30,5 +45,8 @@ const userRepository: UserRepositoryInterface = {
     register: register,
     getProfile: getProfile,
     changePassword: changePassword,
+    activateUser: activateUser,
+    sendResetPassword: sendResetPassword,
+    resetPassword: resetPassword,
 };
 export default userRepository;
