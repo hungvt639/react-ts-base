@@ -1,7 +1,10 @@
 import React from "react";
 import "./header.scss";
 import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
+import { clearUser } from "../../../store/actions/userAction";
 const Header = () => {
+    const dispatch = useDispatch();
     const { t, i18n } = useTranslation();
 
     function onLangChange() {
@@ -13,10 +16,15 @@ const Header = () => {
         }
         i18n.changeLanguage(lg);
     }
+    function logout() {
+        dispatch(clearUser());
+        localStorage.removeItem("token");
+    }
     return (
         <div className="header">
             <div>{t("Header")}</div>
             <button onClick={onLangChange}>{t("L")}</button>
+            <button onClick={logout}>Logout</button>
         </div>
     );
 };
