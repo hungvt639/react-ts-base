@@ -1,0 +1,94 @@
+import React, { useState, Fragment } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { LOGIN } from "../../router/const";
+import { checkRePassword } from "../../../utils/validate";
+import "./reset-password.scss";
+import { AxiosResponse } from "axios";
+import API from "../../../request";
+import { ResponseResetPassword } from "../../../interface/request/UserRespository";
+import { errorAPI } from "../../utils/Error";
+import { message } from "antd";
+const ResetPassword = (props: any) => {
+    const [password, setPassword] = useState<string>("");
+    const [rePassword, setRePassword] = useState<string>("");
+    const [valiPassword, setValiPassword] = useState<boolean>(false);
+    const [valiRePassword, setValiRePassword] = useState<boolean>(false);
+    const history = useHistory();
+    async function onSubmit(e: React.FormEvent) {
+        e.preventDefault();
+        setValiPassword(!password);
+        setValiRePassword(!checkRePassword(password, rePassword));
+        if (checkRePassword(password, rePassword)) {
+            try {
+                const res: AxiosResponse<ResponseResetPassword> =
+                    await API.user.resetPassword({
+                        password: password,
+                        reset_password_token:
+                            props.location.search.split("=")[1],
+                    });
+                for (const m of res.data.message) {
+                    message.success(m);
+                }
+                history.push(LOGIN);
+            } catch (err) {
+                errorAPI(err);
+            }
+        }
+    }
+    return (
+        <div className="reset-password">
+            <div className="forms_">
+                <h1>Cập nhật mật khẩu</h1>
+                <form onSubmit={(e) => onSubmit(e)} className="form_">
+                    <label>
+                        <input
+                            value={password}
+                            onChange={(e) => {
+                                setPassword(e.target.value);
+                                setValiPassword(!e.target.value);
+                            }}
+                            type="password"
+                            name="password"
+                            placeholder="Mật khẩu"
+                            autoComplete="on"
+                        />
+                        {valiPassword ? (
+                            <p className="form-mess-err">
+                                Mật khẩu không được để trống!
+                            </p>
+                        ) : (
+                            <Fragment />
+                        )}
+                    </label>
+                    <label>
+                        <input
+                            value={rePassword}
+                            onChange={(e) => {
+                                setRePassword(e.target.value);
+                                setValiRePassword(
+                                    !checkRePassword(password, e.target.value)
+                                );
+                            }}
+                            type="password"
+                            name="re-password"
+                            placeholder="Nhập lại mật khẩu"
+                            autoComplete="on"
+                        />
+                        {valiRePassword ? (
+                            <p className="form-mess-err">
+                                Nhập lại mật khẩu không khớp!
+                            </p>
+                        ) : (
+                            <Fragment />
+                        )}
+                    </label>
+                    <button type="submit">Cập nhật mật khẩu</button>
+                    <p className="form-has-user">
+                        Đã có tài khoản <Link to={LOGIN}>Đăng Nhập ngay</Link>
+                    </p>
+                </form>
+            </div>
+        </div>
+    );
+};
+export default ResetPassword;
