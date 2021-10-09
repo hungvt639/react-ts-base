@@ -37,7 +37,7 @@ const changePassword = (data: DataChangePassword) => {
 };
 
 const getProfile = () => {
-    return ClientAPI(true).post(`${resource}/profile`);
+    return ClientAPI(true).get(`${resource}/profile`);
 };
 
 const userRepository: UserRepositoryInterface = {

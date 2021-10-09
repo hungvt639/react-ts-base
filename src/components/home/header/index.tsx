@@ -19,12 +19,13 @@ const Header = () => {
     function logout() {
         dispatch(clearUser());
         localStorage.removeItem("token");
+        localStorage.removeItem("user");
     }
     return (
         <div className="header">
             <div>{t("Header")}</div>
             <button onClick={onLangChange}>{t("L")}</button>
-            <button onClick={logout}>Logout</button>
+            <button onClick={logout}>{t("Logout")}</button>
         </div>
     );
 };

@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import {
     LOGIN,
     REGISTER,
@@ -13,11 +13,15 @@ import {
     Switch,
     BrowserRouter as Router,
 } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 // import Home from '../home/content/home';
 import "./router.scss";
 import "./general.scss";
 import { AppState } from "../../interface/redux";
+import { UserInterface } from "../../interface";
+import API from "../../request";
+import { AxiosResponse } from "axios";
+import { clearUser, setUser } from "../../store/actions/userAction";
 const Login = React.lazy(() => import("../user/login"));
 const Register = React.lazy(() => import("../user/register"));
 const PrivateRouter = React.lazy(() => import("./PrivateRouter"));
@@ -68,9 +72,30 @@ export default Routers;
 
 const CheckLogin = (props: any) => {
     // const token = localStorage.getItem("token");
+    const [loading, setLoading] = useState<boolean>(true);
+    const dispatch = useDispatch();
     const token = useSelector((state: AppState) => state.userState.token);
-    console.log("token", token);
-
+    const user = useSelector((state: AppState) => state.userState.user);
+    useEffect(() => {
+        async function getProfile() {
+            if (!user && token) {
+                try {
+                    const res: AxiosResponse<UserInterface> =
+                        await API.user.getProfile();
+                    dispatch(setUser(res.data, token));
+                } catch (e) {
+                    dispatch(clearUser());
+                    localStorage.removeItem("token");
+                    // localStorage.removeItem("user");
+                }
+            }
+        }
+        getProfile();
+        setLoading(false);
+    }, [user, token, dispatch]);
+    if (loading) {
+        return <div>Loading...!</div>;
+    }
     if (token)
         return (
             <Route path={HOME} component={WaitingComponent(PrivateRouter)} />
