@@ -28,7 +28,7 @@ const Header = () => {
     return (
         <div className="header">
             <div className="max-width1200 headers margin-auto">
-                <div className="width100 height-100">{t("Header")}</div>
+                <div className="width-100 height-100">{t("Header")}</div>
                 <div className="align-items-center">
                     <div className="btn-header" onClick={onLangChange}>
                         {t("L")}

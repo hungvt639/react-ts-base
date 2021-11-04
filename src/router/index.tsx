@@ -16,7 +16,6 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 // import Home from '../home/content/home';
 import "./router.scss";
-import "./general.scss";
 import { AppState } from "../interface/redux";
 import { UserInterface } from "../interface";
 import API from "../request";
