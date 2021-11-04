@@ -1,5 +1,5 @@
 import "./App.scss";
-import Routers from "./components/router";
+import Routers from "./router";
 import "antd/dist/antd.css";
 function App() {
     return (

@@ -1,0 +1,13 @@
+.headers {
+    display: flex;
+    .btn-header {
+        white-space: nowrap;
+        padding: 5px 10px;
+        margin: 0 15px;
+        background-color: rgb(255, 255, 0);
+        // color: #ffffff;
+        font-size: 700;
+        border-radius: 15px;
+        cursor: pointer;
+    }
+}

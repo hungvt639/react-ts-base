@@ -1,12 +1,12 @@
 import React, { useState, Fragment } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { LOGIN } from "../../router/const";
-import { checkRePassword } from "../../../utils/validate";
+import { checkRePassword } from "../../utils/validate";
 import "./reset-password.scss";
 import { AxiosResponse } from "axios";
-import API from "../../../request";
-import { ResponseResetPassword } from "../../../interface/request/UserRespository";
-import { errorAPI } from "../../utils/Error";
+import API from "../../request";
+import { ResponseResetPassword } from "../../interface/request/UserRespository";
+import { errorAPI } from "../../components/Error";
 import { message } from "antd";
 const ResetPassword = (props: any) => {
     const [password, setPassword] = useState<string>("");

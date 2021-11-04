@@ -17,19 +17,19 @@ import { useSelector, useDispatch } from "react-redux";
 // import Home from '../home/content/home';
 import "./router.scss";
 import "./general.scss";
-import { AppState } from "../../interface/redux";
-import { UserInterface } from "../../interface";
-import API from "../../request";
+import { AppState } from "../interface/redux";
+import { UserInterface } from "../interface";
+import API from "../request";
 import { AxiosResponse } from "axios";
-import { clearUser, setUser } from "../../store/actions/userAction";
-const Login = React.lazy(() => import("../user/login"));
-const Register = React.lazy(() => import("../user/register"));
+import { clearUser, setUser } from "../store/actions/userAction";
+const Login = React.lazy(() => import("../screens/login"));
+const Register = React.lazy(() => import("../screens/register"));
 const PrivateRouter = React.lazy(() => import("./PrivateRouter"));
-const ActivateUser = React.lazy(() => import("../user/activate-user"));
+const ActivateUser = React.lazy(() => import("../screens/activate-user"));
 const SendResetPassword = React.lazy(
-    () => import("../user/send-reset-password")
+    () => import("../screens/send-reset-password")
 );
-const ResetPassword = React.lazy(() => import("../user/reset-password"));
+const ResetPassword = React.lazy(() => import("../screens/reset-password"));
 export function WaitingComponent(Component: any) {
     return (props: any) => (
         <Suspense fallback={<div>loading</div>}>

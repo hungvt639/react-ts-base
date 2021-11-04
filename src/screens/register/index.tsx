@@ -1,14 +1,14 @@
 import React, { useState, Fragment } from "react";
 import { Link } from "react-router-dom";
 import { LOGIN } from "../../router/const";
-import { checkRePassword, validateEmail } from "../../../utils/validate";
+import { checkRePassword, validateEmail } from "../../utils/validate";
 import "./register.scss";
-import API from "../../../request";
-import { ResponseRegister } from "../../../interface/request/UserRespository";
+import API from "../../request";
+import { ResponseRegister } from "../../interface/request/UserRespository";
 import { AxiosResponse } from "axios";
 import { message } from "antd";
 import { useHistory } from "react-router-dom";
-import { errorAPI } from "../../utils/Error";
+import { errorAPI } from "../../components/Error";
 const Register = () => {
     const [username, setUsername] = useState<string>("");
     const [password, setPassword] = useState<string>("");

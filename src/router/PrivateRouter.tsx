@@ -1,12 +1,12 @@
 import React from "react";
-import Header from "../home/header";
-import Slider from "../home/slider";
+import Header from "../screens/home/header";
+import Slider from "../screens/home/slider";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import { WaitingComponent } from ".";
 import { PROFILE, HOME } from "./const";
 
-const Profile = React.lazy(() => import("../home/content/profile"));
-const Home = React.lazy(() => import("../home/content/home"));
+const Profile = React.lazy(() => import("../screens/home/content/profile"));
+const Home = React.lazy(() => import("../screens/home/content/home"));
 const PrivateRouter = () => {
     return (
         <Router>
