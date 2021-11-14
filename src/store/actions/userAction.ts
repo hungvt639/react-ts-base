@@ -1,13 +1,19 @@
 import { UserInterface } from "../../interface";
 import { DataLogin } from "../../interface/request/UserRespository";
 import { Action } from "../../interface/redux";
-import { SET_USER, CLEAR_USER, SET_LOGIN } from "../const";
+import { SET_USER, CLEAR_USER, SET_LOGIN, SET_RES_LOGIN } from "../const";
 
-export const setUser = (user: UserInterface, token: string): Action => {
+export const setResLogin = (user: UserInterface, token: string): Action => {
+    return {
+        type: SET_RES_LOGIN,
+        user: user,
+        token: token,
+    };
+};
+export const setUser = (user?: UserInterface): Action => {
     return {
         type: SET_USER,
         user: user,
-        token: token,
     };
 };
 

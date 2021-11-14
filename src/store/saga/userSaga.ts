@@ -6,11 +6,11 @@ import {
 import { SET_LOGIN } from "../const";
 import API from "../../request";
 import { AxiosResponse } from "axios";
-import { setUser } from "../actions/userAction";
+import { setResLogin } from "../actions/userAction";
 
 function* login(data: DataLogin) {
     const res: AxiosResponse<ResponseLogin> = yield call(API.user.login, data);
-    yield put(setUser(res.data.user, res.data.token));
+    yield put(setResLogin(res.data.user, res.data.token));
     localStorage.setItem("token", res.data.token);
     console.log("login success", res.data);
 }
