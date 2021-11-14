@@ -14,7 +14,7 @@ export default function getInstanceAxios(baseAPI: string, isToken: boolean) {
             config.headers = {
                 Accept: "*/*",
                 "Content-Type": "application/json",
-                Authorization: `token ${token}`,
+                Authorization: `Bearer ${token}`,
             };
             if (!isToken) delete config.headers.Authorization;
             return config;

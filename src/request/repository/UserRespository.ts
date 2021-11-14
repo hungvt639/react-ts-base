@@ -31,9 +31,7 @@ const resetPassword = (data: DataResetPassword) => {
 };
 
 const changePassword = (data: DataChangePassword) => {
-    return ClientAPI(true).post(`${resource}/change-password`, {
-        newPass: data,
-    });
+    return ClientAPI(true).post(`${resource}/change-password`, data);
 };
 
 const getProfile = () => {
