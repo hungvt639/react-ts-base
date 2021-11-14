@@ -20,7 +20,7 @@ import { AppState } from "../interface/redux";
 import { UserInterface } from "../interface";
 import API from "../request";
 import { AxiosResponse } from "axios";
-import { clearUser, setUser } from "../store/actions/userAction";
+import { clearUser, setResLogin, setUser } from "../store/actions/userAction";
 const Login = React.lazy(() => import("../screens/login"));
 const Register = React.lazy(() => import("../screens/register"));
 const PrivateRouter = React.lazy(() => import("./PrivateRouter"));
@@ -81,7 +81,7 @@ const CheckLogin = (props: any) => {
                 try {
                     const res: AxiosResponse<UserInterface> =
                         await API.user.getProfile();
-                    dispatch(setUser(res.data, token));
+                    dispatch(setUser(res.data));
                 } catch (e) {
                     dispatch(clearUser());
                     localStorage.removeItem("token");
