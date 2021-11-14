@@ -20,7 +20,7 @@ import { AppState } from "../interface/redux";
 import { UserInterface } from "../interface";
 import API from "../request";
 import { AxiosResponse } from "axios";
-import { clearUser, setResLogin, setUser } from "../store/actions/userAction";
+import { clearUser, setUser } from "../store/actions/userAction";
 const Login = React.lazy(() => import("../screens/login"));
 const Register = React.lazy(() => import("../screens/register"));
 const PrivateRouter = React.lazy(() => import("./PrivateRouter"));
