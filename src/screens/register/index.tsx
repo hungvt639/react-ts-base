@@ -67,21 +67,21 @@ const Register = () => {
                 <h1>Đăng ký</h1>
                 <form onSubmit={(e) => onSubmit(e)} className="form_">
                     <div className="fullname">
-                        <label className="firstname">
-                            <input
-                                value={first_name}
-                                onChange={(e) => setFirstName(e.target.value)}
-                                type="text"
-                                name="firstName"
-                                placeholder="Họ"
-                            />
-                        </label>
-                        <label className="lastname">
+                        <label className="lastName">
                             <input
                                 value={last_name}
                                 onChange={(e) => setLastName(e.target.value)}
                                 type="text"
                                 name="lastName"
+                                placeholder="Họ"
+                            />
+                        </label>
+                        <label className="firstName">
+                            <input
+                                value={first_name}
+                                onChange={(e) => setFirstName(e.target.value)}
+                                type="text"
+                                name="firstName"
                                 placeholder="Tên"
                             />
                         </label>
