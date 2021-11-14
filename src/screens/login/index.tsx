@@ -7,7 +7,7 @@ import { errorAPI } from "../../components/Error";
 import { ResponseLogin } from "../../interface/request/UserRespository";
 import { AxiosResponse } from "axios";
 import { useDispatch } from "react-redux";
-import { setUser } from "../../store/actions/userAction";
+import { setResLogin } from "../../store/actions/userAction";
 import { message } from "antd";
 import { useHistory } from "react-router-dom";
 import { HOME } from "../../router/const";
@@ -30,7 +30,7 @@ const LoginForm: React.FC = (props: any) => {
                     password,
                 });
                 localStorage.setItem("token", res.data.token);
-                dispatch(setUser(res.data.user, res.data.token));
+                dispatch(setResLogin(res.data.user, res.data.token));
                 message.success("Đăng nhập thành công!");
                 const backTo: string = props.location.search;
                 if (backTo) {
