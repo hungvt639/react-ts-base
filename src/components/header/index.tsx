@@ -2,13 +2,13 @@ import React from "react";
 import "./header.scss";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { clearUser } from "../../../store/actions/userAction";
+import { clearUser } from "../../store/actions/userAction";
 import { Dropdown } from "antd";
-import { AppState } from "../../../interface/redux";
+import { AppState } from "../../interface/redux";
 import { Link } from "react-router-dom";
-import { PROFILE } from "../../../router/const";
-import VIImg from "../../../img/vi.png";
-import ENImg from "../../../img/en.png";
+import { HOME, USER_PROFILE } from "../../router/const";
+import VIImg from "../../img/vi.png";
+import ENImg from "../../img/en.png";
 
 const Header = () => {
     const dispatch = useDispatch();
@@ -32,7 +32,7 @@ const Header = () => {
     const menu = (
         <div>
             <div>
-                <Link to={PROFILE}>Profile</Link>
+                <Link to={`${USER_PROFILE}/${user?._id}`}>Profile</Link>
             </div>
             <div onClick={logout}>{t("Logout")}</div>
         </div>
@@ -40,7 +40,9 @@ const Header = () => {
     return (
         <div className="header">
             <div className="max-width1200 headers margin-0auto">
-                <div className="width-100 height-100">{t("Header")}</div>
+                <div className="width-100 height-100">
+                    <Link to={HOME}>{t("Header")}</Link>
+                </div>
                 <div className="align-items-center">
                     <div className="btn-header" onClick={onLangChange}>
                         <img
@@ -52,7 +54,7 @@ const Header = () => {
                         {t("L")}
                     </div>
                     <Dropdown overlay={menu} placement="bottomRight">
-                        <div className="btn-header">{`${user?.last_name} ${user?.first_name}`}</div>
+                        <div className="btn-header">{`${user?.fullname} `}</div>
                     </Dropdown>
                 </div>
             </div>

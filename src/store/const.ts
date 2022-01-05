@@ -3,3 +3,5 @@ export const SET_RES_LOGIN = "SET_RES_LOGIN";
 export const CLEAR_USER = "CLEAR_USER";
 
 export const SET_LOGIN = "SET_LOGIN";
+
+export const SET_FRIENDS = "SET_FRIENDS";

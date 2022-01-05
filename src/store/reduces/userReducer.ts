@@ -1,4 +1,4 @@
-import { SET_USER, CLEAR_USER, SET_RES_LOGIN } from "../const";
+import { SET_USER, CLEAR_USER, SET_RES_LOGIN, SET_FRIENDS } from "../const";
 import { Reducer } from "redux";
 import { Action, UserState } from "../../interface/redux";
 
@@ -28,6 +28,13 @@ const userReduce: Reducer<UserState, Action> = (
                 ...state,
                 user: undefined,
                 token: null,
+            };
+        case SET_FRIENDS:
+            return {
+                ...state,
+                user: state.user
+                    ? { ...state.user, friends: action.friends }
+                    : undefined,
             };
         default:
             return state;

@@ -4,8 +4,8 @@ import { LOGIN } from "../../router/const";
 import { checkRePassword } from "../../utils/validate";
 import "./reset-password.scss";
 import { AxiosResponse } from "axios";
-import API from "../../request";
-import { ResponseResetPassword } from "../../interface/request/UserRespository";
+import API from "../../api";
+import { ResponseResetPassword } from "../../interface/api/UserAPI";
 import { errorAPI } from "../../components/Error";
 import { message } from "antd";
 const ResetPassword = (props: any) => {

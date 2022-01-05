@@ -18,7 +18,7 @@ import { useSelector, useDispatch } from "react-redux";
 import "./router.scss";
 import { AppState } from "../interface/redux";
 import { UserInterface } from "../interface";
-import API from "../request";
+import API from "../api";
 import { AxiosResponse } from "axios";
 import { clearUser, setUser } from "../store/actions/userAction";
 const Login = React.lazy(() => import("../screens/login"));
@@ -70,28 +70,26 @@ const Routers = () => {
 export default Routers;
 
 const CheckLogin = (props: any) => {
-    // const token = localStorage.getItem("token");
     const [loading, setLoading] = useState<boolean>(true);
     const dispatch = useDispatch();
     const token = useSelector((state: AppState) => state.userState.token);
-    const user = useSelector((state: AppState) => state.userState.user);
     useEffect(() => {
         async function getProfile() {
-            if (!user && token) {
+            if (token) {
                 try {
                     const res: AxiosResponse<UserInterface> =
                         await API.user.getProfile();
+
                     dispatch(setUser(res.data));
                 } catch (e) {
                     dispatch(clearUser());
                     localStorage.removeItem("token");
-                    // localStorage.removeItem("user");
                 }
             }
         }
         getProfile();
         setLoading(false);
-    }, [user, token, dispatch]);
+    }, [token, dispatch]);
     if (loading) {
         return <div>Loading...!</div>;
     }

@@ -1,7 +1,13 @@
-import { UserInterface } from "../../interface";
-import { DataLogin } from "../../interface/request/UserRespository";
+import { FriendInterface, UserInterface } from "../../interface";
+import { DataLogin } from "../../interface/api/UserAPI";
 import { Action } from "../../interface/redux";
-import { SET_USER, CLEAR_USER, SET_LOGIN, SET_RES_LOGIN } from "../const";
+import {
+    SET_USER,
+    CLEAR_USER,
+    SET_LOGIN,
+    SET_RES_LOGIN,
+    SET_FRIENDS,
+} from "../const";
 
 export const setResLogin = (user: UserInterface, token: string): Action => {
     return {
@@ -27,5 +33,11 @@ export const setLogin = (data: DataLogin): Action => {
     return {
         type: SET_LOGIN,
         dataLogin: data,
+    };
+};
+export const setFriends = (data: FriendInterface[]): Action => {
+    return {
+        type: SET_FRIENDS,
+        friends: data,
     };
 };

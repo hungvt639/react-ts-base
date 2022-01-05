@@ -1,8 +1,8 @@
 import { AxiosResponse } from "axios";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { ResponseActivateUser } from "../../interface/request/UserRespository";
-import API from "../../request";
+import { ResponseActivateUser } from "../../interface/api/UserAPI";
+import API from "../../api";
 import { LOGIN } from "../../router/const";
 import { errorAPI } from "../../components/Error";
 import { message } from "antd";

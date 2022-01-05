@@ -1,10 +1,7 @@
 import { all, call, put, take, fork } from "redux-saga/effects";
-import {
-    DataLogin,
-    ResponseLogin,
-} from "../../interface/request/UserRespository";
+import { DataLogin, ResponseLogin } from "../../interface/api/UserAPI";
 import { SET_LOGIN } from "../const";
-import API from "../../request";
+import API from "../../api";
 import { AxiosResponse } from "axios";
 import { setResLogin } from "../actions/userAction";
 

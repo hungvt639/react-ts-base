@@ -1,10 +1,10 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useSelector } from "react-redux";
-import { AppState } from "../../../../interface/redux";
+// import { useSelector } from "react-redux";
+// import { AppState } from "../../interface/redux";
 const EditProfile = () => {
-    const user = useSelector((state: AppState) => state.userState.user);
-    const { register, handleSubmit } = useForm();
+    // const user = useSelector((state: AppState) => state.userState.user);
+    const { /*register,*/ handleSubmit } = useForm();
     async function editProfile(data: any) {
         console.log(data);
     }
@@ -13,17 +13,17 @@ const EditProfile = () => {
             className="form-edit_profile"
             onSubmit={handleSubmit(editProfile)}
         >
-            <div className="flex-row">
+            {/* <div className="flex-row">
                 <div
                     className="form-edit-profile-label"
                     style={{ marginRight: "10px" }}
                 >
-                    <label htmlFor="last_name">Họ:</label>
+                    <label htmlFor="fullname">Họ-Tên:</label>
                     <input
                         type="text"
                         id="last_name"
-                        defaultValue={user?.last_name ?? ""}
-                        {...register("last_name", {
+                        defaultValue={user?.fullname ?? ""}
+                        {...register("fullname", {
                             required: true,
                         })}
                     />
@@ -32,16 +32,7 @@ const EditProfile = () => {
                     className="form-edit-profile-label"
                     style={{ marginLeft: "10px" }}
                 >
-                    <label htmlFor="first_name">Tên:</label>
-                    <input
-                        type="text"
-                        id="first_name"
-                        defaultValue={user?.first_name ?? ""}
-                        {...register("first_name", {
-                            required: true,
-                        })}
-                    />
-                </div>
+                   
             </div>
 
             <div className="form-edit-profile-label">
@@ -114,7 +105,7 @@ const EditProfile = () => {
                 <label className="label-radio" htmlFor="other">
                     Khác
                 </label>
-            </div>
+            </div> */}
             <div className="btn-submit">
                 <button type="submit">Chỉnh sửa</button>
             </div>

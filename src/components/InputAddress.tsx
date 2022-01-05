@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
-import API from "../request";
+import API from "../api";
 
 const InputAddress = () => {
     const [provinces, setProvince] = useState([]);

@@ -1,8 +1,9 @@
 import axios from "axios";
-const http = require("http");
-const https = require("https");
+import http from "http";
+import https from "https";
+import { AxiosInstance } from "axios";
 
-export default function getInstanceAxios(baseAPI: string, isToken: boolean) {
+function config(baseAPI: string, isToken: boolean) {
     const instance = axios.create({
         baseURL: baseAPI,
         httpAgent: new http.Agent({ keepAlive: true }),
@@ -38,4 +39,9 @@ export default function getInstanceAxios(baseAPI: string, isToken: boolean) {
         }
     );
     return instance;
+}
+const baseDomain = process.env.REACT_APP_BASE_URL as string;
+const baseURL = `${baseDomain}/`;
+export default function AxiosAPI(isToken = true): AxiosInstance {
+    return config(baseURL, isToken);
 }

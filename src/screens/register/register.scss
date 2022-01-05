@@ -31,7 +31,7 @@
                 box-shadow: 0 2px 5px rgb(126, 153, 163);
                 color: #000;
                 background-color: #fff;
-                margin-top: 15px;
+                // margin-top: 15px;
                 font-weight: 700;
             }
             input:active,
@@ -44,6 +44,9 @@
             }
             .form-mess-err {
                 color: #ff0000;
+                margin: 0;
+                height: 30px;
+                overflow: hidden;
             }
             .forgot-password {
                 color: #5992c3;
@@ -65,18 +68,6 @@
                 span {
                     color: #5992c3;
                     cursor: pointer;
-                }
-            }
-            .fullname {
-                display: flex;
-                label {
-                    width: 50%;
-                }
-                .firstname {
-                    margin-right: 5px;
-                }
-                .lastname {
-                    margin-left: 5px;
                 }
             }
         }

@@ -1,6 +1,6 @@
 import store from "../../store";
-import { UserInterface } from "..";
-import { DataLogin } from "../request/UserRespository";
+import { FriendInterface, UserInterface } from "..";
+import { DataLogin } from "../api/UserAPI";
 
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;
@@ -20,6 +20,7 @@ export interface Action {
     user?: UserInterface;
     token?: string | null;
     dataLogin?: DataLogin;
+    friends?: FriendInterface[];
 }
 
 // export const initStateRedux: AppState = {
