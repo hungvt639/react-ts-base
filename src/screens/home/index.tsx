@@ -53,7 +53,7 @@ const Home = () => {
             <div>{t("Home")}</div>
             <div>Status {mqttClient.connected}</div>
             <div>
-                {users.map((user: UserInterface, index: number) => (
+                {/* {users.map((user: UserInterface, index: number) => (
                     <div className="border m-5" key={index}>
                         <Link to={`${USER_PROFILE}/${user._id}`}>
                             <p>{user._id}</p>
@@ -61,13 +61,13 @@ const Home = () => {
                             <p>{user.fullname}</p>
                         </Link>
                     </div>
-                ))}
-                {/* {notifies.map((notify: Notification, index: number) => (
+                ))} */}
+                {notifies.map((notify: Notification, index: number) => (
                     <div key={index}>
                         <h2>{notify.head}</h2>
                         <p>{notify.content}</p>
                     </div>
-                ))} */}
+                ))}
             </div>
         </div>
     );
