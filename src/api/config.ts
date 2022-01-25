@@ -2,22 +2,31 @@ import axios from "axios";
 import http from "http";
 import https from "https";
 import { AxiosInstance } from "axios";
+import { BASE_URL, IMGUR, IMGUR_TOKEN } from "../config";
 
-function config(baseAPI: string, isToken: boolean) {
+type Header = {
+    Accept: string;
+    "Content-Type": string;
+    Authorization?: string;
+};
+const baseURL = `${BASE_URL}/`;
+
+function config(baseAPI: string, token: string, contentType: string) {
     const instance = axios.create({
         baseURL: baseAPI,
         httpAgent: new http.Agent({ keepAlive: true }),
         httpsAgent: new https.Agent({ keepAlive: true }),
     });
-    const token = localStorage.getItem("token");
+    let header: Header = {
+        Accept: "*/*",
+        "Content-Type": contentType,
+    };
+    if (token) {
+        header.Authorization = token;
+    }
     instance.interceptors.request.use(
         function (config) {
-            config.headers = {
-                Accept: "*/*",
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
-            };
-            if (!isToken) delete config.headers.Authorization;
+            config.headers = header;
             return config;
         },
         function (error) {
@@ -40,8 +49,18 @@ function config(baseAPI: string, isToken: boolean) {
     );
     return instance;
 }
-const baseDomain = process.env.REACT_APP_BASE_URL as string;
-const baseURL = `${baseDomain}/`;
-export default function AxiosAPI(isToken = true): AxiosInstance {
-    return config(baseURL, isToken);
+
+export default function AxiosAPI(
+    hasToken = false,
+    contentType = "application/json"
+): AxiosInstance {
+    const token = hasToken ? `Bearer ${localStorage.getItem("token")}` : "";
+    return config(baseURL, token, contentType);
+}
+export function APIImgur(
+    hasToken = false,
+    contentType = "multipart/form-data"
+): AxiosInstance {
+    const token = hasToken ? `Client-ID ${IMGUR_TOKEN}` : "";
+    return config(`${IMGUR}/`, token, contentType);
 }

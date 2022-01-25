@@ -34,14 +34,13 @@ const Profile = (props: any) => {
                 //user
                 setProfile(user);
             } else {
-
-            //khách
-            try {
-                const res = await API.user.getUser(_id);
-                setProfile(res.data);
-            } catch (e) {
-                errorAPI(e);
-            }
+                //khách
+                try {
+                    const res = await API.user.getUser(_id, "");
+                    setProfile(res.data);
+                } catch (e) {
+                    errorAPI(e);
+                }
             }
         }
         fetchUser();

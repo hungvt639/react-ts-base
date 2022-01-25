@@ -6,6 +6,7 @@ import ImgCrop from "antd-img-crop";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../store/actions/userAction";
 import ChangeCircleOutlinedIcon from "@mui/icons-material/ChangeCircleOutlined";
+import { BASE_URL, BASE_URL_IMG } from "../../config";
 type propsAvatar = {
     user?: UserInterface;
     token?: string | null;
@@ -47,7 +48,7 @@ const Avatar = (props: propsAvatar) => {
             <div className="avatar-img">
                 <Image
                     className="avatar-image"
-                    src={`${process.env.REACT_APP_BASE_URL_IMG}${user?.avatar}`}
+                    src={`${BASE_URL_IMG}${user?.avatar}`}
                 />
                 {isUser ? (
                     <ImgCrop>
@@ -58,7 +59,7 @@ const Avatar = (props: propsAvatar) => {
                                 loading ? "change-avatar" : "change-avatar"
                             }
                             showUploadList={false}
-                            action={`${process.env.REACT_APP_BASE_URL}/user/avatar`}
+                            action={`${BASE_URL}/user/avatar`}
                             beforeUpload={beforeUpload}
                             headers={{
                                 Authorization: "Bearer " + token,

@@ -9,6 +9,7 @@ import { BLOG } from "../router/const";
 import "./component.scss";
 import { errorAPI } from "./Error";
 import { useState } from "react";
+import { BASE_URL_IMG } from "../config";
 const FormBlogCK = () => {
     const history = useHistory();
     const [content, setContent] = useState("");
@@ -46,7 +47,7 @@ const FormBlogCK = () => {
                 data="<p>Hello from CKEditor 5!</p>"
                 config={{
                     ckfinder: {
-                        uploadUrl: `${process.env.REACT_APP_BASE_URL_IMG}/api/image`,
+                        uploadUrl: `${BASE_URL_IMG}/api/image`,
                     },
                 }}
                 onReady={(editor) => {

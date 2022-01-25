@@ -40,8 +40,8 @@ const getProfile = () => {
 const getUsers = () => {
     return AxiosAPI(false).get(`${resource}/list`);
 };
-const getUser = (id: String) => {
-    return AxiosAPI(false).get(`${resource}/user/${id}`);
+const getUser = (id: String, option: string) => {
+    return AxiosAPI(false).get(`${resource}/user/${id}?option=${option}`);
 };
 const addFriend = (idFriend: String) => {
     return AxiosAPI(true).post(`${resource}/add-friend`, {
@@ -64,6 +64,12 @@ const getChatUser = (idFriend: string) => {
 const getChatMessage = (idFriend: string) => {
     return AxiosAPI(true).get(`${resource}/message/${idFriend}`);
 };
+const getListChat = () => {
+    return AxiosAPI(true).get(`${resource}/chats`);
+};
+const sendMessage = (id: string, data: { content: string }) => {
+    return AxiosAPI(true).post(`${resource}/message/${id}`, data);
+};
 const userAPI: UserAPI = {
     login,
     register,
@@ -79,5 +85,7 @@ const userAPI: UserAPI = {
     acceptFriend,
     getChatUser,
     getChatMessage,
+    getListChat,
+    sendMessage,
 };
 export default userAPI;

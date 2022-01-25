@@ -1,5 +1,10 @@
 import { AxiosResponse } from "axios";
-import { ChatInterface, FriendInterface, UserInterface } from "..";
+import {
+    ChatInterface,
+    FriendInterface,
+    MessageInterface,
+    UserInterface,
+} from "..";
 
 export interface DataRegister {
     email: string;
@@ -60,6 +65,12 @@ export interface ResponseChangePassword {
 export interface ResponseAddFriend {
     friends: FriendInterface[];
 }
+
+export interface ChatListInterFace {
+    _id: string;
+    name: string;
+}
+
 export default interface UserRepositoryInterface {
     register: (data: DataRegister) => Promise<AxiosResponse<ResponseRegister>>;
     activateUser: (
@@ -77,7 +88,10 @@ export default interface UserRepositoryInterface {
         data: DataChangePassword
     ) => Promise<AxiosResponse<ResponseChangePassword>>;
     getUsers: () => Promise<AxiosResponse<UserInterface[]>>;
-    getUser: (id: String) => Promise<AxiosResponse<UserInterface>>;
+    getUser: (
+        id: String,
+        option: string
+    ) => Promise<AxiosResponse<UserInterface>>;
 
     addFriend: (idFriend: string) => Promise<AxiosResponse<ResponseAddFriend>>;
     unfriend: (idFriend: string) => Promise<AxiosResponse<ResponseAddFriend>>;
@@ -86,4 +100,9 @@ export default interface UserRepositoryInterface {
     ) => Promise<AxiosResponse<ResponseAddFriend>>;
     getChatUser: (id: string) => Promise<AxiosResponse<ChatInterface>>;
     getChatMessage: (id: string) => Promise<AxiosResponse<ChatInterface>>;
+    getListChat: () => Promise<AxiosResponse<ChatListInterFace[]>>;
+    sendMessage: (
+        id: string,
+        data: { content: string }
+    ) => Promise<AxiosResponse<MessageInterface>>;
 }

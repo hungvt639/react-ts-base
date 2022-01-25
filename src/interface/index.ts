@@ -24,19 +24,27 @@ export interface Notification {
     updated_at: string;
     __v: number;
 }
+
+export interface MemberInterface {
+    _id: String;
+    idUser: String;
+    idChat: String;
+}
+
 export interface MessageInterface {
-    content: string;
-    sender: string;
-    status: number;
-    _id: string;
+    _id: String;
+    content: String;
+    sender: String;
+    status: Number;
     created_at: string;
     updatedAt: string;
 }
 export interface ChatInterface {
-    _id: string;
-    member: string[];
-    status: number;
+    _id: String;
+    name: String;
+    member: MemberInterface[];
     message: MessageInterface[];
+    status: number;
     created_at: string;
     updated_at: string;
     __v: number;
