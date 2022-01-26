@@ -62,6 +62,9 @@ const getChatUser = (idFriend: string) => {
     return AxiosAPI(true).get(`${resource}/chat/${idFriend}`);
 };
 const getChatMessage = (idFriend: string) => {
+    return AxiosAPI(true).get(`${resource}/message-chat/${idFriend}`);
+};
+const getMessage = (idFriend: string) => {
     return AxiosAPI(true).get(`${resource}/message/${idFriend}`);
 };
 const getListChat = () => {
@@ -85,6 +88,7 @@ const userAPI: UserAPI = {
     acceptFriend,
     getChatUser,
     getChatMessage,
+    getMessage,
     getListChat,
     sendMessage,
 };

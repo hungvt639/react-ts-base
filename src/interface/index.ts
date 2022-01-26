@@ -33,9 +33,9 @@ export interface MemberInterface {
 
 export interface MessageInterface {
     _id: String;
-    content: String;
-    sender: String;
-    status: Number;
+    content: string;
+    sender: string;
+    status: number;
     created_at: string;
     updatedAt: string;
 }

@@ -11,8 +11,8 @@ const ChatList = (props: ChatListProps) => {
         <div>
             <div>
                 {listChat.map((lChat: ChatListInterFace) => (
-                    <Link to={`${MESSAGE}/${lChat._id}`}>
-                        <div key={lChat._id}>
+                    <Link key={lChat._id} to={`${MESSAGE}/${lChat._id}`}>
+                        <div>
                             <p>{lChat.name}</p>
                         </div>
                     </Link>

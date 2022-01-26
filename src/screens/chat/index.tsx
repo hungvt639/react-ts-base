@@ -1,24 +1,21 @@
 import Message from "./message/Message";
-// import { useEffect, useState } from "react";
-// import API from "../../api";
-// import { errorAPI } from "../../components/Error";
-// import {
-//     ChatInterface,
-//     MemberInterface,
-//     MessageInterface,
-// } from "../../interface";
-// import { ChatListInterFace } from "../../interface/api/UserAPI";
 import ChatList from "./ChatList";
 import SendMessage from "./message/SendMessage";
-// import mqttClient, { TOPIC_MESSAGE } from "../../utils/mqtt";
 import "./style.scss";
-import useChatBox from "./useChatBox";
+import useChatBox from "./hooks/useChatBox";
+import useMessage from "./hooks/useMessage";
+
 import { useEffect, useRef } from "react";
+import useMember from "./hooks/useMemer";
+import useChatList from "./hooks/useChatList";
 
 const Chat = (props: any) => {
     const messagesEndRef = useRef<null | HTMLDivElement>(null);
     const _id = props.match.params.id;
-    const { chat, message, listChat, sendMessage } = useChatBox({ _id: _id });
+    const { chat } = useChatBox(_id);
+    const { listChat } = useChatList();
+    const { message, sendMessage } = useMessage(_id);
+    const { profilesChat } = useMember(chat);
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView();
     };
@@ -37,7 +34,7 @@ const Chat = (props: any) => {
                     <div>{chat?.name}</div>
                 </div>
                 <div className="flex-1 overflow-auto border-r border-solid border-slate-500 flex-row-reverse">
-                    <Message message={message} />
+                    <Message message={message} profilesChat={profilesChat} />
                     <div ref={messagesEndRef} />
                 </div>
                 <div className="overflow-hidden border-t border-solid border-slate-500 py-4 px-2">

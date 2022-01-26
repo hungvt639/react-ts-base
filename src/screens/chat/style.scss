@@ -5,9 +5,58 @@
     .avatar-sender {
         width: 25px;
         height: 25px;
-        border-radius: 50%;
+        img {
+            border-radius: 50%;
+        }
     }
-    .text-sender {
-        border-radius: 10px;
+    .not-sender-smg {
+        .message-t-b {
+            border-radius: 15px;
+        }
+        .message-t {
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 15px;
+        }
+        .message-b {
+            border-top-left-radius: 5px;
+            border-top-right-radius: 15px;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+        }
+        .message-c {
+            border-top-left-radius: 5px;
+            border-top-right-radius: 15px;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 15px;
+        }
+    }
+    .sender-smg {
+        .message-t-b {
+            border-radius: 15px;
+        }
+        .message-t {
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 5px;
+        }
+        .message-b {
+            border-top-left-radius: 15px;
+            border-top-right-radius: 5px;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+        }
+        .message-c {
+            border-top-left-radius: 15px;
+            border-top-right-radius: 5px;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 5px;
+        }
+    }
+
+    .my-1px {
+        margin: 1px 0;
     }
 }

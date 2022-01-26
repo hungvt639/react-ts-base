@@ -6,7 +6,7 @@ import { clearUser } from "../../store/actions/userAction";
 import { Dropdown } from "antd";
 import { AppState } from "../../interface/redux";
 import { Link } from "react-router-dom";
-import { HOME, USER_PROFILE } from "../../router/const";
+import { HOME, LIST_BLOG, NEW_BLOG, USER_PROFILE } from "../../router/const";
 import VIImg from "../../img/vi.png";
 import ENImg from "../../img/en.png";
 
@@ -41,7 +41,15 @@ const Header = () => {
         <div className="header">
             <div className="max-width1200 headers margin-0auto">
                 <div className="width-100 height-100">
-                    <Link to={HOME}>{t("Header")}</Link>
+                    <Link className="m-5 text-white" to={HOME}>
+                        Home
+                    </Link>
+                    <Link className="m-5 text-white" to={NEW_BLOG}>
+                        NEW_BLOG
+                    </Link>
+                    <Link className="m-5 text-white" to={LIST_BLOG}>
+                        LIST_BLOG
+                    </Link>
                 </div>
                 <div className="align-items-center">
                     <div className="btn-header" onClick={onLangChange}>

@@ -100,6 +100,8 @@ export default interface UserRepositoryInterface {
     ) => Promise<AxiosResponse<ResponseAddFriend>>;
     getChatUser: (id: string) => Promise<AxiosResponse<ChatInterface>>;
     getChatMessage: (id: string) => Promise<AxiosResponse<ChatInterface>>;
+    getMessage: (id: string) => Promise<AxiosResponse<MessageInterface[]>>;
+
     getListChat: () => Promise<AxiosResponse<ChatListInterFace[]>>;
     sendMessage: (
         id: string,
