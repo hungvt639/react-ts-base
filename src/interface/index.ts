@@ -49,3 +49,10 @@ export interface ChatInterface {
     updated_at: string;
     __v: number;
 }
+
+export interface MessMQTTInterface {
+    from: string;
+    to: string;
+    m: MessageInterface;
+    chat: string;
+}

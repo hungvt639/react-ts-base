@@ -26,7 +26,6 @@ const Profile = (props: any) => {
         (state: AppState) => state.userState.user?.friends
     );
     const token = useSelector((state: AppState) => state.userState.token);
-    console.log("user", props.match.params.id);
 
     useEffect(() => {
         async function fetchUser() {

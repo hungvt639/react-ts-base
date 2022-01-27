@@ -12,6 +12,5 @@ export const NEW_BLOG = "/new-blog";
 export const LIST_BLOG = "/list-blog";
 export const BLOG = "/blog";
 export const BLOG_VIEW = `${BLOG}/:slug`;
-export const MAP = "/map";
 export const MESSAGE = "/message";
 export const MESSAGE_ROUTER = `${MESSAGE}/:id`;

@@ -1,0 +1,59 @@
+@keyframes close {
+    from {
+        margin-top: 15px;
+        border-radius: 2px;
+        border: 1px;
+    }
+    to {
+        height: 0;
+        margin-top: 0;
+        border-radius: 0;
+        border: 0;
+    }
+}
+#__notify {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    width: 300px;
+    background-color: rgba(255, 255, 255, 0);
+
+    .show-notify {
+        display: flex;
+        flex-direction: row;
+        margin-top: 15px;
+        border-radius: 2px;
+        box-shadow: 1px 2px 5px #a1a1a1;
+        background-color: rgb(255, 255, 255);
+        padding: 10px 20px;
+        transition: all 0.2s ease-in-out;
+        transform: translate(0, 0px);
+    }
+    .not-show-notify {
+        height: 0;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        animation-name: close;
+        animation-duration: 0.1s;
+        transition: all 0.2s ease-in-out;
+        transform: translate(0, 0px);
+    }
+    .notify {
+        flex: 1;
+    }
+    .error {
+        border: 1px solid #ff0000;
+    }
+    .success {
+        border: 1px solid #007a25;
+    }
+    .close-btn {
+        margin-left: 10px;
+        cursor: pointer;
+    }
+}

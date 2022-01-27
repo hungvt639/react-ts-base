@@ -1,25 +1,45 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { useSelector } from "react-redux";
 import API from "../../../api";
 import { errorAPI } from "../../../components/Error";
-import { MessageInterface } from "../../../interface";
+import { MessageInterface, MessMQTTInterface } from "../../../interface";
+import { AppState } from "../../../interface/redux";
 import mqttClient, { TOPIC_MESSAGE } from "../../../utils/mqtt";
 
 const useMessage = (_id: any) => {
+    const client = mqttClient();
+    const user = useSelector((s: AppState) => s.userState.user);
     const [message, setMessage] = useState<MessageInterface[]>([]);
 
+    const listTopics = useMemo(() => {
+        return [`${TOPIC_MESSAGE}/${user?._id}`];
+    }, [user?._id]);
+
+    const messMQTT = useCallback(() => {
+        client.on("message", async function (topic: any, mess: any) {
+            const m: MessMQTTInterface = JSON.parse(mess.toString());
+            if (m.chat === _id) {
+                setMessage((msg) => [...msg, m.m]);
+            }
+        });
+    }, [_id, client]);
+
     useEffect(() => {
-        mqttClient.subscribe([`${TOPIC_MESSAGE}/${_id}`], (error: any) => {
+        client.subscribe(listTopics, (error: any) => {
             if (error) {
                 console.log("Subscribe to topics error", error);
                 return;
             }
         });
-    }, [_id]);
+        return () => {
+            client.unsubscribe(listTopics);
+        };
+    }, [user?._id, client, listTopics]);
 
-    mqttClient.on("message", async function (topic: any, mess: any) {
-        const m: MessageInterface = await JSON.parse(await mess.toString());
-        setMessage(message.concat(m));
-    });
+    useEffect(() => {
+        messMQTT();
+    }, [messMQTT]);
+
     const getMessage = useCallback(async () => {
         try {
             const res = await API.user.getMessage(_id);
@@ -36,13 +56,12 @@ const useMessage = (_id: any) => {
     const sendMessage = useCallback(
         async (content: string) => {
             if (content) {
-                const res = await API.user.sendMessage(_id, {
+                API.user.sendMessage(_id, {
                     content: content,
                 });
-                setMessage(message.concat(res.data));
             }
         },
-        [_id, message]
+        [_id]
     );
 
     return { message, sendMessage };

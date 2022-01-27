@@ -10,15 +10,7 @@ type PropsUserAction = {
 };
 const UserAction = (props: PropsUserAction) => {
     const { _id, friendList, setListFriend, goToMessage } = props;
-    // const [friend, setFriends] = useState(
-    //     user?.friends?.filter((f) => f.idFriend === _id)
-    // );
     const friend = friendList?.filter((f) => f.idFriend === _id);
-    console.log("id_", _id);
-    console.log("fr", friend);
-    // useEffect(() => {
-    //     setFriends(user?.friends?.filter((f) => f.idFriend === _id));
-    // }, [user, _id]);
     if (friend?.length) {
         if (friend[0].status === STT_FRIEND.REQUEST_INVITE) {
             return (

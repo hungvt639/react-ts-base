@@ -14,13 +14,13 @@ import {
     BrowserRouter as Router,
 } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-// import Home from '../home/content/home';
 import "./router.scss";
 import { AppState } from "../interface/redux";
 import { UserInterface } from "../interface";
 import API from "../api";
 import { AxiosResponse } from "axios";
 import { clearUser, setUser } from "../store/actions/userAction";
+
 const Login = React.lazy(() => import("../screens/login"));
 const Register = React.lazy(() => import("../screens/register"));
 const PrivateRouter = React.lazy(() => import("./PrivateRouter"));
@@ -29,6 +29,7 @@ const SendResetPassword = React.lazy(
     () => import("../screens/send-reset-password")
 );
 const ResetPassword = React.lazy(() => import("../screens/reset-password"));
+
 export function WaitingComponent(Component: any) {
     return (props: any) => (
         <Suspense fallback={<div>loading</div>}>
