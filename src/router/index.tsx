@@ -30,7 +30,9 @@ const SendResetPassword = React.lazy(
 );
 const ResetPassword = React.lazy(() => import("../screens/reset-password"));
 
-export function WaitingComponent(Component: any) {
+export function WaitingComponent(
+    Component: React.LazyExoticComponent<(props: any) => JSX.Element>
+) {
     return (props: any) => (
         <Suspense fallback={<div>loading</div>}>
             <Component {...props} />

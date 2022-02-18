@@ -16,7 +16,7 @@ const useNotification = (pathname: string) => {
     useEffect(() => {
         client.subscribe([`${TOPIC_MESSAGE}/${user?._id}`], (error: any) => {
             if (error) {
-                console.log("Subscribe to topics error", error);
+                console.log("Subscribe to topics error");
                 return;
             }
         });

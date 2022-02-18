@@ -5,36 +5,43 @@ import { errorAPI } from "../../../components/Error";
 import { MessageInterface, MessMQTTInterface } from "../../../interface";
 import { AppState } from "../../../interface/redux";
 import mqttClient, { TOPIC_MESSAGE } from "../../../utils/mqtt";
+import { ISubscriptionMap } from "mqtt";
 
 const useMessage = (_id: any) => {
     const client = mqttClient();
     const user = useSelector((s: AppState) => s.userState.user);
     const [message, setMessage] = useState<MessageInterface[]>([]);
 
+    const listTopicsSub: ISubscriptionMap = useMemo(() => {
+        let a: ISubscriptionMap = {};
+        a[`${TOPIC_MESSAGE}/${user?._id}`] = { qos: 2 };
+        return a;
+    }, [user?._id]);
+
     const listTopics = useMemo(() => {
         return [`${TOPIC_MESSAGE}/${user?._id}`];
     }, [user?._id]);
+    // console.log("listTopicsSub", listTopicsSub);
 
     const messMQTT = useCallback(() => {
         client.on("message", async function (topic: any, mess: any) {
-            const m: MessMQTTInterface = JSON.parse(mess.toString());
+            const m: MessMQTTInterface = await JSON.parse(mess.toString());
             if (m.chat === _id) {
                 setMessage((msg) => [...msg, m.m]);
             }
         });
     }, [_id, client]);
-
     useEffect(() => {
-        client.subscribe(listTopics, (error: any) => {
+        client.subscribe(listTopicsSub, (error: any) => {
             if (error) {
-                console.log("Subscribe to topics error", error);
+                console.log("Subscribe to topics error");
                 return;
             }
         });
         return () => {
             client.unsubscribe(listTopics);
         };
-    }, [user?._id, client, listTopics]);
+    }, [user?._id, client, listTopicsSub, listTopics]);
 
     useEffect(() => {
         messMQTT();
@@ -56,7 +63,7 @@ const useMessage = (_id: any) => {
     const sendMessage = useCallback(
         async (content: string) => {
             if (content) {
-                API.user.sendMessage(_id, {
+                await API.user.sendMessage(_id, {
                     content: content,
                 });
             }

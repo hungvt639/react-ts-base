@@ -12,7 +12,7 @@ import { message } from "antd";
 import { useHistory } from "react-router-dom";
 import { HOME } from "../../router/const";
 
-const LoginForm: React.FC = (props: any) => {
+const LoginForm = (props: any) => {
     const [username, setUsername] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [valiUsername, setValiUsername] = useState<boolean>(false);
