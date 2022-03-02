@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
-import API from "../../../api";
-import { errorAPI } from "../../../components/Error";
+import API, { tryApi } from "../../../api";
 import { MessageInterface, MessMQTTInterface } from "../../../interface";
 import { AppState } from "../../../interface/redux";
 import mqttClient, { TOPIC_MESSAGE } from "../../../utils/mqtt";
@@ -48,12 +47,16 @@ const useMessage = (_id: any) => {
     }, [messMQTT]);
 
     const getMessage = useCallback(async () => {
-        try {
+        tryApi(async () => {
             const res = await API.user.getMessage(_id);
             setMessage(res.data);
-        } catch (e) {
-            errorAPI(e);
-        }
+        });
+        // try {
+        //     const res = await API.user.getMessage(_id);
+        //     setMessage(res.data);
+        // } catch (e) {
+        //     errorAPI(e);
+        // }
     }, [_id]);
 
     useEffect(() => {
