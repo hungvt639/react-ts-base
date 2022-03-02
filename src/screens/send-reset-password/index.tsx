@@ -2,11 +2,11 @@ import React, { useState, Fragment } from "react";
 import { Link } from "react-router-dom";
 import { AxiosResponse } from "axios";
 import API from "../../api";
-import { message } from "antd";
 import { errorAPI } from "../../components/Error";
 import { LOGIN, REGISTER } from "../../router/const";
 import { ResponseSendResetPassword } from "../../interface/api/UserAPI";
 import "./send-reset-password.scss";
+import notify from "../../components/notify";
 const SendResetPassword = () => {
     const [username, setUsername] = useState<string>("");
     const [valiUsername, setValiUsername] = useState<boolean>(false);
@@ -22,7 +22,7 @@ const SendResetPassword = () => {
                 const res: AxiosResponse<ResponseSendResetPassword> =
                     await API.user.sendResetPassword({ username });
                 for (const mess of res.data.message) {
-                    message.success(mess);
+                    notify.success(mess);
                     setOk(true);
                 }
             } catch (err) {

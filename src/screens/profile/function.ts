@@ -1,8 +1,8 @@
 import { checkRePassword } from "../../utils/validate";
 import API from "../../api";
-import { message } from "antd";
 import { errorAPI } from "../../components/Error";
 import { FriendInterface } from "../../interface";
+import notify from "../../components/notify";
 export async function changePassword(
     data: {
         old_password: string;
@@ -23,7 +23,7 @@ export async function changePassword(
     if (old_password && checkRePass) {
         try {
             await API.user.changePassword({ old_password, password });
-            message.success("Đổi mật khẩu thành công!");
+            notify.success("Đổi mật khẩu thành công!");
             reset({ old_password: "", password: "", re_password: "" });
         } catch (err) {
             errorAPI(err);

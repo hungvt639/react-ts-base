@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { UserInterface } from "../../interface";
-import { Image, message, Upload } from "antd";
+import { Image, Upload } from "antd";
 // import { LoadingOutlined } from "@ant-design/icons";
 import ImgCrop from "antd-img-crop";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../store/actions/userAction";
 import ChangeCircleOutlinedIcon from "@mui/icons-material/ChangeCircleOutlined";
 import { BASE_URL, BASE_URL_IMG } from "../../config";
+import notify from "../../components/notify";
 type propsAvatar = {
     user?: UserInterface;
     token?: string | null;
@@ -22,7 +23,7 @@ const Avatar = (props: propsAvatar) => {
         const type = ["image/jpeg", "image/png"];
         const check = type.includes(file.type);
         if (!check) {
-            message.error("Không hỗ trợ loại file này");
+            notify.error("Không hỗ trợ loại file này");
         }
         return check;
     };
@@ -40,7 +41,7 @@ const Avatar = (props: propsAvatar) => {
                 )
             );
             setLoading(false);
-            message.success("Cập nhật ảnh đại diện thành công");
+            notify.success("Cập nhật ảnh đại diện thành công");
         }
     };
     return (

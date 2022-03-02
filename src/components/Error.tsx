@@ -1,9 +1,9 @@
-import { message } from "antd";
+import notify from "./notify";
 export function errorAPI(error: any) {
     console.log("err___________", error);
     if (typeof error.response === "undefined") {
-        message.error("Đã có lỗi sảy ra, bạn vui lòng thử lại sau");
+        notify.error("Đã có lỗi sảy ra, bạn vui lòng thử lại sau");
         return;
     }
-    message.error(error.response.data.message);
+    notify.error(error.response.data.message);
 }

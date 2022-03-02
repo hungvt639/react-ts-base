@@ -8,9 +8,9 @@ import { ResponseLogin } from "../../interface/api/UserAPI";
 import { AxiosResponse } from "axios";
 import { useDispatch } from "react-redux";
 import { setResLogin } from "../../store/actions/userAction";
-import { message } from "antd";
 import { useHistory } from "react-router-dom";
 import { HOME } from "../../router/const";
+import notify from "../../components/notify";
 
 const LoginForm = (props: any) => {
     const [username, setUsername] = useState<string>("");
@@ -31,7 +31,7 @@ const LoginForm = (props: any) => {
                 });
                 localStorage.setItem("token", res.data.token);
                 dispatch(setResLogin(res.data.user, res.data.token));
-                message.success("Đăng nhập thành công!");
+                notify.success("Đăng nhập thành công!");
                 const backTo: string = props.location.search;
                 if (backTo) {
                     history.push(backTo.slice(6));

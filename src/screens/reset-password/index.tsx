@@ -7,7 +7,7 @@ import { AxiosResponse } from "axios";
 import API from "../../api";
 import { ResponseResetPassword } from "../../interface/api/UserAPI";
 import { errorAPI } from "../../components/Error";
-import { message } from "antd";
+import notify from "../../components/notify";
 const ResetPassword = (props: any) => {
     const [password, setPassword] = useState<string>("");
     const [rePassword, setRePassword] = useState<string>("");
@@ -27,7 +27,7 @@ const ResetPassword = (props: any) => {
                             props.location.search.split("=")[1],
                     });
                 for (const m of res.data.message) {
-                    message.success(m);
+                    notify.success(m);
                 }
                 history.push(LOGIN);
             } catch (err) {

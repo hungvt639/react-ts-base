@@ -5,7 +5,7 @@ import { ResponseActivateUser } from "../../interface/api/UserAPI";
 import API from "../../api";
 import { LOGIN } from "../../router/const";
 import { errorAPI } from "../../components/Error";
-import { message } from "antd";
+import notify from "../../components/notify";
 
 const ActivateUser = () => {
     const [loading, setLoading] = useState<boolean>(true);
@@ -18,7 +18,7 @@ const ActivateUser = () => {
                 const res: AxiosResponse<ResponseActivateUser> =
                     await API.user.activateUser({ active_token: active_token });
                 setLoading(false);
-                message.success(res.data.message[0]);
+                notify.success(res.data.message[0]);
             } catch (err: any) {
                 errorAPI(err);
             }

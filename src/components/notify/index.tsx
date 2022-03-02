@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { MessMQTTInterface } from "../../interface";
 import { MESSAGE } from "../../router/const";
+import { MdCheckCircle, MdError } from "react-icons/md";
 import "./style.scss";
 type NotifiMessageProps = {
     message: string | JSX.Element;
@@ -9,27 +10,64 @@ type NotifiMessageProps = {
     classChill: string;
 };
 const NotifyMessage = (props: NotifiMessageProps) => {
+    const [show, setShow] = useState<boolean>(false);
+    const [remove, setRemove] = useState<boolean>(false);
     const { message, time, classChill } = props;
     useEffect(() => {
         setShow(true);
-        let timer = setTimeout(() => setShow(false), time);
+        let timerShow = setTimeout(() => setShow(false), time);
+        let timerRemove = setTimeout(() => setRemove(true), time + 500);
+
         return () => {
-            clearTimeout(timer);
+            clearTimeout(timerShow);
+            clearTimeout(timerRemove);
         };
     }, [message, time]);
-    const [show, setShow] = useState<boolean>(true);
     // if (show) {
     //     return <div className={`show-notify ${classChill}`}>{message}</div>;
     // } else {
     //     return <Fragment />;
     // }
 
+    const getIcon = (key: string) => {
+        switch (key) {
+            case "success":
+                return <MdCheckCircle className="icon" />;
+            case "error":
+                return <MdError className="icon" />;
+            default:
+                return <></>;
+        }
+    };
+    if (remove) {
+        return <></>;
+    }
     return (
-        <div className={show ? `show-notify ${classChill}` : "not-show-notify"}>
-            <div className="notify">{message}</div>
-            <div onClick={() => setShow(false)} className="close-btn">
-                X
+        <div
+            className={
+                show
+                    ? `show-notify _notify bgr_${classChill}`
+                    : `not-show-notify _notify bgr_${classChill}`
+            }
+        >
+            {getIcon(classChill)}
+            <div className={`erect ${classChill}`}></div>
+            <div className="message">{message}</div>
+            <div>
+                <div
+                    onClick={() => setShow(false)}
+                    className={`close-btn close_${classChill}`}
+                >
+                    X
+                </div>
             </div>
+
+            <div
+                style={{
+                    animation: `time_close ${time / 1000}s ease forwards`,
+                }}
+                className={`notify_time ${classChill}`}
+            ></div>
         </div>
     );
 };

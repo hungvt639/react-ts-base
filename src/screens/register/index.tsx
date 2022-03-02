@@ -6,10 +6,10 @@ import "./register.scss";
 import API from "../../api";
 import { DataRegister, ResponseRegister } from "../../interface/api/UserAPI";
 import { AxiosResponse } from "axios";
-import { message } from "antd";
 import { useHistory } from "react-router-dom";
 import { errorAPI } from "../../components/Error";
 import { useForm } from "react-hook-form";
+import notify from "../../components/notify";
 
 interface DataFormRegister extends DataRegister {
     rePassword: string;
@@ -51,7 +51,7 @@ const Register = () => {
                 const res: AxiosResponse<ResponseRegister> =
                     await API.user.register(data);
                 console.log(res);
-                message.success(
+                notify.success(
                     "Đăng ký tài khoản thành công, vui lòng đăng nhập để sử dụng dịch vụ"
                 );
                 history.push(LOGIN);
