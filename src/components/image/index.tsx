@@ -58,21 +58,8 @@ const Image = (props: ImageProps) => {
                             : "modal-img modal-img-not-view"
                     }
                 >
-                    <div
-                        onClick={closeImg}
-                        className={
-                            show
-                                ? "close-modal-img close-modal-img-view"
-                                : "close-modal-img close-modal-img-not-view"
-                        }
-                    ></div>
-                    <div
-                        className={
-                            show
-                                ? "show-modal-img show-modal-img-view"
-                                : "show-modal-img show-modal-img-not-view"
-                        }
-                    >
+                    <div onClick={closeImg} className="close-modal-img"></div>
+                    <div className="show-modal-img">
                         <img
                             style={{
                                 transform: `rotate(${rotate}deg) scale(${scales[scale]},${scales[scale]})`,

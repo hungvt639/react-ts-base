@@ -1,5 +1,4 @@
-import React from "react";
-
+import "./style.scss";
 type propsModal = {
     children: any;
     show: boolean;

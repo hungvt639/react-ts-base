@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppState } from "../../interface/redux";
 import Avatar from "./Avatar";
-import Modal from "../../components/Modal";
+import Modal from "../../components/modal";
 import EditProfile from "./EditProfile";
 import { FriendInterface, UserInterface } from "../../interface";
 import ChangePassword from "./ChangePassword";
