@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import "./style.scss";
 type propsModal = {
     children: any;
@@ -9,6 +9,16 @@ type propsModal = {
 const Modal = (props: propsModal) => {
     const { children, show, onClose } = props;
     const [showElemamt, setShowElement] = useState(show);
+
+    const escFunction = useCallback(
+        (event) => {
+            if (event.key === "Escape") {
+                onClose();
+            }
+        },
+        [onClose]
+    );
+
     useEffect(() => {
         if (show === true) {
             setShowElement(true);
@@ -18,6 +28,14 @@ const Modal = (props: propsModal) => {
             }, 200);
         }
     }, [show]);
+
+    useEffect(() => {
+        document.addEventListener("keydown", escFunction, false);
+
+        return () => {
+            document.removeEventListener("keydown", escFunction, false);
+        };
+    }, [escFunction]);
 
     if (!showElemamt) {
         return <></>;
