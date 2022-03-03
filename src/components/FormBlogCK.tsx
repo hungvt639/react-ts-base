@@ -9,7 +9,7 @@ import { BLOG } from "../router/route";
 import "./component.scss";
 import { errorAPI } from "./Error";
 import { useState } from "react";
-import { BASE_URL_IMG } from "../config";
+import { BASE_URL_IMG } from "../env";
 const FormBlogCK = () => {
     const history = useHistory();
     const [content, setContent] = useState("");

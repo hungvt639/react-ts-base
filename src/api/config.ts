@@ -2,7 +2,7 @@ import axios from "axios";
 import http from "http";
 import https from "https";
 import { AxiosInstance } from "axios";
-import { BASE_URL, IMGUR, IMGUR_TOKEN } from "../config";
+import { BASE_URL, IMGUR, IMGUR_TOKEN } from "../env";
 
 type Header = {
     Accept: string;

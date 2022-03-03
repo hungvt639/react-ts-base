@@ -1,5 +1,5 @@
 import * as mqtt from "mqtt";
-import { MQTT } from "../config";
+import { MQTT } from "../env";
 export const TOPIC_MESSAGE = "message";
 
 function mqttClient() {

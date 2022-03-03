@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { useSelector } from "react-redux";
-import { BASE_URL_IMG } from "../../../config";
+import { BASE_URL_IMG } from "../../../env";
 import { MessageInterface, UserInterface } from "../../../interface";
 import { AppState } from "../../../interface/redux";
 import AvatarDefault from "../../../img/avatar_default.jpg";

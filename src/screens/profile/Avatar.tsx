@@ -5,7 +5,7 @@ import { Upload } from "antd";
 import ImgCrop from "antd-img-crop";
 import { useDispatch } from "react-redux";
 import ChangeCircleOutlinedIcon from "@mui/icons-material/ChangeCircleOutlined";
-import { BASE_URL, BASE_URL_IMG } from "../../config";
+import { BASE_URL, BASE_URL_IMG } from "../../env";
 import notify from "../../components/notify";
 import Image from "../../components/image";
 import action from "../../store/actions";
@@ -71,15 +71,6 @@ const Avatar = (props: propsAvatar) => {
                             }}
                             onChange={changeAvatar}
                         >
-                            {/* {loading ? (
-                                <span className="avatar-uploader-button_loading">
-                                    <LoadingOutlined />
-                                </span>
-                            ) : (
-                                <span className="avatar-uploader-button">
-                                    Thay đổi
-                                </span>
-                            )} */}
                             <ChangeCircleOutlinedIcon />
                         </Upload>
                     </ImgCrop>
