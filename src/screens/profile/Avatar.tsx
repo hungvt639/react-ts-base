@@ -4,11 +4,11 @@ import { Upload } from "antd";
 // import { LoadingOutlined } from "@ant-design/icons";
 import ImgCrop from "antd-img-crop";
 import { useDispatch } from "react-redux";
-import { setUser } from "../../store/actions/userAction";
 import ChangeCircleOutlinedIcon from "@mui/icons-material/ChangeCircleOutlined";
 import { BASE_URL, BASE_URL_IMG } from "../../config";
 import notify from "../../components/notify";
 import Image from "../../components/image";
+import action from "../../store/actions";
 type propsAvatar = {
     user?: UserInterface;
     token?: string | null;
@@ -35,7 +35,7 @@ const Avatar = (props: propsAvatar) => {
         }
         if (info.file.status === "done") {
             dispatch(
-                setUser(
+                action.setUser(
                     user
                         ? { ...user, avatar: info.file.response.avatar }
                         : undefined

@@ -2,13 +2,13 @@ import React from "react";
 import "./header.scss";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { clearUser } from "../../store/actions/userAction";
 import { Dropdown } from "antd";
 import { AppState } from "../../interface/redux";
 import { Link } from "react-router-dom";
 import { HOME, LIST_BLOG, NEW_BLOG, USER_PROFILE } from "../../router/const";
 import VIImg from "../../img/vi.png";
 import ENImg from "../../img/en.png";
+import action from "../../store/actions";
 
 const Header = () => {
     const dispatch = useDispatch();
@@ -25,7 +25,7 @@ const Header = () => {
         i18n.changeLanguage(lg);
     }
     function logout() {
-        dispatch(clearUser());
+        dispatch(action.clearUser());
         localStorage.removeItem("token");
         // localStorage.removeItem("user");
     }

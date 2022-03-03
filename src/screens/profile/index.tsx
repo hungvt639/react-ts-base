@@ -10,10 +10,10 @@ import ChangePassword from "./ChangePassword";
 import { errorAPI } from "../../components/Error";
 import API from "../../api";
 import UserAction from "./UserAction";
-import { setFriends } from "../../store/actions/userAction";
 import { getIdMessage } from "./function";
 import { useHistory } from "react-router-dom";
 import { MESSAGE } from "../../router/const";
+import action from "../../store/actions";
 
 const Profile = (props: any) => {
     const _id = props.match.params.id;
@@ -46,7 +46,7 @@ const Profile = (props: any) => {
     }, [_id, idUser, user]);
     const dispatch = useDispatch();
     function setListFriend(friends: FriendInterface[]) {
-        dispatch(setFriends(friends));
+        dispatch(action.setFriends(friends));
     }
     async function goToMessage() {
         const messId = await getIdMessage(_id);

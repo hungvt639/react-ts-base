@@ -9,35 +9,44 @@ import {
     SET_FRIENDS,
 } from "../const";
 
-export const setResLogin = (user: UserInterface, token: string): Action => {
+const setResLogin = (user: UserInterface, token: string): Action => {
     return {
         type: SET_RES_LOGIN,
         user: user,
         token: token,
     };
 };
-export const setUser = (user?: UserInterface): Action => {
+const setUser = (user?: UserInterface): Action => {
     return {
         type: SET_USER,
         user: user,
     };
 };
 
-export const clearUser = (): Action => {
+const clearUser = (): Action => {
     return {
         type: CLEAR_USER,
     };
 };
 
-export const setLogin = (data: DataLogin): Action => {
+const setLogin = (data: DataLogin): Action => {
     return {
         type: SET_LOGIN,
         dataLogin: data,
     };
 };
-export const setFriends = (data: FriendInterface[]): Action => {
+const setFriends = (data: FriendInterface[]): Action => {
     return {
         type: SET_FRIENDS,
         friends: data,
     };
 };
+
+const userAction = {
+    setResLogin,
+    setUser,
+    clearUser,
+    setLogin,
+    setFriends,
+};
+export default userAction;
