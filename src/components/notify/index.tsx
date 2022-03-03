@@ -23,11 +23,6 @@ const NotifyMessage = (props: NotifiMessageProps) => {
             clearTimeout(timerRemove);
         };
     }, [message, time]);
-    // if (show) {
-    //     return <div className={`show-notify ${classChill}`}>{message}</div>;
-    // } else {
-    //     return <Fragment />;
-    // }
 
     const getIcon = (key: string) => {
         switch (key) {

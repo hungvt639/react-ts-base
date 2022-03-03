@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { UserInterface } from "../../interface";
-import { Image, Upload } from "antd";
+import { Upload } from "antd";
 // import { LoadingOutlined } from "@ant-design/icons";
 import ImgCrop from "antd-img-crop";
 import { useDispatch } from "react-redux";
@@ -8,6 +8,7 @@ import { setUser } from "../../store/actions/userAction";
 import ChangeCircleOutlinedIcon from "@mui/icons-material/ChangeCircleOutlined";
 import { BASE_URL, BASE_URL_IMG } from "../../config";
 import notify from "../../components/notify";
+import Image from "../../components/image";
 type propsAvatar = {
     user?: UserInterface;
     token?: string | null;
@@ -48,6 +49,9 @@ const Avatar = (props: propsAvatar) => {
         <div className="avatar">
             <div className="avatar-img">
                 <Image
+                    width="100%"
+                    height="100%"
+                    alt="avatar"
                     className="avatar-image"
                     src={`${BASE_URL_IMG}${user?.avatar}`}
                 />
