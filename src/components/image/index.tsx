@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import "./style.scss";
 import {
     MdRemoveRedEye,
@@ -16,35 +16,46 @@ type ImageProps = {
     height?: string | number;
 };
 const Image = (props: ImageProps) => {
+    const { className, alt, src, width, height } = props;
+
     const [show, setShow] = useState<boolean>(false);
     const [showElememt, setShowElememt] = useState<boolean>(false);
-
     const [scale, setScale] = useState<number>(0);
     const [rotate, setRotate] = useState<number>(0);
+
     const scales = [1, 1.2, 1.5, 2, 3, 5];
 
-    function setDataScale(i: number) {
-        if (scale + i < 0 || scale + i >= scales.length) return;
-        setScale(scale + i);
-    }
-    const { className, alt, src, width, height } = props;
-    function showImg() {
+    const setDataScale = useCallback(
+        (i: number) => {
+            if (scale + i < 0 || scale + i >= scales.length) return;
+            setScale(scale + i);
+        },
+        [scale, scales.length]
+    );
+
+    const showImg = useCallback(() => {
         setShowElememt(true);
         setShow(true);
-    }
-    function closeImg() {
+    }, []);
+
+    const closeImg = useCallback(() => {
         setShow(false);
         setTimeout(() => {
             setScale(0);
             setRotate(0);
             setShowElememt(false);
         }, 200);
-    }
-    const escFunction = useCallback((event) => {
-        if (event.key === "Escape") {
-            closeImg();
-        }
     }, []);
+
+    const escFunction = useCallback(
+        (event) => {
+            if (event.key === "Escape") {
+                closeImg();
+            }
+        },
+        [closeImg]
+    );
+
     useEffect(() => {
         document.addEventListener("keydown", escFunction, false);
 
