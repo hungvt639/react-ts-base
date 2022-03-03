@@ -106,6 +106,7 @@ const EditProfile = () => {
                     Khác
                 </label>
             </div> */}
+            <input />
             <div className="btn-submit">
                 <button type="submit">Chỉnh sửa</button>
             </div>

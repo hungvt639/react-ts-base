@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import "./style.scss";
 type propsModal = {
     children: any;
@@ -7,11 +8,23 @@ type propsModal = {
 
 const Modal = (props: propsModal) => {
     const { children, show, onClose } = props;
+    const [showElemamt, setShowElement] = useState(show);
+    useEffect(() => {
+        if (show === true) {
+            setShowElement(true);
+        } else {
+            setTimeout(() => {
+                setShowElement(false);
+            }, 200);
+        }
+    }, [show]);
+
+    if (!showElemamt) {
+        return <></>;
+    }
     return (
-        <div className={show ? "modal" : "modal-none"}>
-            <div className={show ? "modal-children" : "modal-children-none"}>
-                {children}
-            </div>
+        <div className={show ? "_modal _modal-show" : "_modal _modal-not-show"}>
+            <div className={"modal-children"}>{children}</div>
             <div
                 style={{ display: show ? "block" : "none" }}
                 onClick={onClose}
