@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../components/header";
+import Header from "../container/header";
 import { Route, Switch } from "react-router-dom";
 import { WaitingComponent } from ".";
 import {
