@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { LOGIN } from "../../router/const";
+import { LOGIN } from "../../router/route";
 import { checkRePassword, validateEmail } from "../../utils/validate";
 import "./register.scss";
 import API from "../../api";

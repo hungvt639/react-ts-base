@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo } from "react";
 import { MessMQTTInterface } from "../../interface";
-import { MESSAGE } from "../const";
+import { MESSAGE } from "../route";
 import notify from "../../components/notify";
 import mqttClient, { TOPIC_MESSAGE } from "../../utils/mqtt";
 import { useSelector } from "react-redux";

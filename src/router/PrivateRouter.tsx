@@ -9,7 +9,7 @@ import {
     BLOG_VIEW,
     USER_PROFILE_ROUTER,
     MESSAGE_ROUTER,
-} from "./const";
+} from "./route";
 import useNotification from "./hooks/useNotification";
 
 const Profile = React.lazy(() => import("../screens/profile"));

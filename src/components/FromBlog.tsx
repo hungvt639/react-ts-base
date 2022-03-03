@@ -4,7 +4,7 @@ import "react-quill/dist/quill.snow.css";
 import { useHistory } from "react-router-dom";
 import API from "../api";
 import { ResponseBlog } from "../interface/api/BlogAPI";
-import { BLOG } from "../router/const";
+import { BLOG } from "../router/route";
 import "./component.scss";
 import { errorAPI } from "./Error";
 const FormBlog = () => {

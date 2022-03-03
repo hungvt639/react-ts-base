@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import API from "../../api";
 import { errorAPI } from "../../components/Error";
 import { UserInterface } from "../../interface";
-import { USER_PROFILE } from "../../router/const";
+import { USER_PROFILE } from "../../router/route";
 
 const Home = () => {
     const { t } = useTranslation();

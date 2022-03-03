@@ -1,5 +1,5 @@
 import React, { useState, Fragment } from "react";
-import { REGISTER, SEND_RESET_PASSWORD } from "../../router/const";
+import { REGISTER, SEND_RESET_PASSWORD } from "../../router/route";
 import { Link } from "react-router-dom";
 import "./login.scss";
 import API from "../../api";
@@ -8,7 +8,7 @@ import { ResponseLogin } from "../../interface/api/UserAPI";
 import { AxiosResponse } from "axios";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { HOME } from "../../router/const";
+import { HOME } from "../../router/route";
 import notify from "../../components/notify";
 import action from "../../store/actions";
 

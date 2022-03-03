@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Dropdown } from "antd";
 import { AppState } from "../../interface/redux";
 import { Link } from "react-router-dom";
-import { HOME, LIST_BLOG, NEW_BLOG, USER_PROFILE } from "../../router/const";
+import { HOME, LIST_BLOG, NEW_BLOG, USER_PROFILE } from "../../router/route";
 import VIImg from "../../img/vi.png";
 import ENImg from "../../img/en.png";
 import action from "../../store/actions";

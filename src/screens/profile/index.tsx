@@ -12,7 +12,7 @@ import API from "../../api";
 import UserAction from "./UserAction";
 import { getIdMessage } from "./function";
 import { useHistory } from "react-router-dom";
-import { MESSAGE } from "../../router/const";
+import { MESSAGE } from "../../router/route";
 import action from "../../store/actions";
 
 const Profile = (props: any) => {

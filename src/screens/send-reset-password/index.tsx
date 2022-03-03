@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { AxiosResponse } from "axios";
 import API from "../../api";
 import { errorAPI } from "../../components/Error";
-import { LOGIN, REGISTER } from "../../router/const";
+import { LOGIN, REGISTER } from "../../router/route";
 import { ResponseSendResetPassword } from "../../interface/api/UserAPI";
 import "./send-reset-password.scss";
 import notify from "../../components/notify";

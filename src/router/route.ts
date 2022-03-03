@@ -14,3 +14,22 @@ export const BLOG = "/blog";
 export const BLOG_VIEW = `${BLOG}/:slug`;
 export const MESSAGE = "/message";
 export const MESSAGE_ROUTER = `${MESSAGE}/:id`;
+
+const route = {
+    LOGIN,
+    REGISTER,
+    SEND_RESET_PASSWORD,
+    RESET_PASSWORD,
+    ACTIVATE_USER,
+    HOME,
+    PROFILE,
+    USER_PROFILE,
+    USER_PROFILE_ROUTER,
+    NEW_BLOG,
+    LIST_BLOG,
+    BLOG,
+    BLOG_VIEW,
+    MESSAGE,
+    MESSAGE_ROUTER,
+};
+export default route;

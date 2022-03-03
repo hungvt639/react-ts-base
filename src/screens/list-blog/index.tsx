@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import API from "../../api";
 import { errorAPI } from "../../components/Error";
 import { ResponseBlog } from "../../interface/api/BlogAPI";
-import { BLOG } from "../../router/const";
+import { BLOG } from "../../router/route";
 const ListBlog = (props: any) => {
     const [blogs, setBlogs] = useState<ResponseBlog[]>([]);
     useEffect(() => {

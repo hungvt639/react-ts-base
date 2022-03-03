@@ -6,7 +6,7 @@ import {
     ACTIVATE_USER,
     SEND_RESET_PASSWORD,
     RESET_PASSWORD,
-} from "./const";
+} from "./route";
 import {
     Route,
     Redirect,

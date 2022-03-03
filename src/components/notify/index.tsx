@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { MessMQTTInterface } from "../../interface";
-import { MESSAGE } from "../../router/const";
+import { MESSAGE } from "../../router/route";
 import { MdCheckCircle, MdError } from "react-icons/md";
 import "./style.scss";
 type NotifiMessageProps = {

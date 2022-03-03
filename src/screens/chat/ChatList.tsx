@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { ChatListInterFace } from "../../interface/api/UserAPI";
-import { MESSAGE } from "../../router/const";
+import { MESSAGE } from "../../router/route";
 
 type ChatListProps = {
     listChat: ChatListInterFace[];

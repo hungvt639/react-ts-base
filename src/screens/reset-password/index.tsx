@@ -1,6 +1,6 @@
 import React, { useState, Fragment } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { LOGIN } from "../../router/const";
+import { LOGIN } from "../../router/route";
 import { checkRePassword } from "../../utils/validate";
 import "./reset-password.scss";
 import { AxiosResponse } from "axios";
