@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import "./style.scss";
 import {
     MdRemoveRedEye,
@@ -39,8 +39,20 @@ const Image = (props: ImageProps) => {
             setRotate(0);
             setShowElememt(false);
         }, 200);
-        // clearTimeout(timerShow);
     }
+    const escFunction = useCallback((event) => {
+        if (event.key === "Escape") {
+            closeImg();
+        }
+    }, []);
+    useEffect(() => {
+        document.addEventListener("keydown", escFunction, false);
+
+        return () => {
+            document.removeEventListener("keydown", escFunction, false);
+        };
+    }, [escFunction]);
+
     return (
         <div
             style={{ width: width ?? "", height: height ?? "" }}
