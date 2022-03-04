@@ -71,6 +71,15 @@ const Avatar = (props: propsAvatar) => {
                             }}
                             onChange={changeAvatar}
                         >
+                            {/* {loading ? (
+                                <span className="avatar-uploader-button_loading">
+                                    <LoadingOutlined />
+                                </span>
+                            ) : (
+                                <span className="avatar-uploader-button">
+                                    Thay đổi
+                                </span>
+                            )} */}
                             <ChangeCircleOutlinedIcon />
                         </Upload>
                     </ImgCrop>

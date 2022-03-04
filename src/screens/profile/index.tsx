@@ -22,10 +22,11 @@ const Profile = (props: any) => {
     const [profile, setProfile] = useState<UserInterface | undefined>();
     const idUser = useSelector((state: AppState) => state.userState.user?._id);
     const user = useSelector((state: AppState) => state.userState.user);
+    const token = useSelector((state: AppState) => state.userState.token);
+
     const friendList = useSelector(
         (state: AppState) => state.userState.user?.friends
     );
-    const token = useSelector((state: AppState) => state.userState.token);
 
     useEffect(() => {
         async function fetchUser() {
