@@ -11,7 +11,8 @@ import { useHistory } from "react-router-dom";
 import { HOME } from "../../router/route";
 import notify from "../../components/notify";
 import action from "../../store/actions";
-
+import ImageZoom from "../../components/image_zoom";
+import Ns2 from "../../img/ns2.png";
 const LoginForm = (props: any) => {
     const [username, setUsername] = useState<string>("");
     const [password, setPassword] = useState<string>("");
@@ -47,6 +48,8 @@ const LoginForm = (props: any) => {
     return (
         <div className="login">
             <div className="forms_">
+                <ImageZoom src={Ns2} alt="abc" />
+
                 <h1>Đăng nhập</h1>
                 <form onSubmit={(e) => onSubmit(e)} className="form_">
                     <label>
