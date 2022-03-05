@@ -1,12 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import "./style.scss";
-import {
-    MdRotateLeft,
-    MdRotateRight,
-    MdZoomIn,
-    MdZoomOut,
-    MdClose,
-} from "react-icons/md";
+import { MdClose } from "react-icons/md";
 type ShowImageProps = {
     src: string;
     alt: string;
@@ -17,31 +11,17 @@ const ShowImage = (props: ShowImageProps) => {
     const { alt, src, show, onClose } = props;
 
     const [showElememt, setShowElememt] = useState<boolean>(false);
-    const [scale, setScale] = useState<number>(0);
-    const [rotate, setRotate] = useState<number>(0);
     const [position, setPosition] = useState({ top: 0, left: 0 });
-    const [bgrSize, setBgrSize] = useState("");
     const [bgrPosition, setBgrPosition] = useState("");
     const imgRef = useRef<HTMLImageElement>(null);
-    const scales = [1, 1.2, 1.5, 2, 3, 5];
-    const rectangle = { width: 40, height: 40, scale: 10 };
-    // const result = { width: 800, height: 100 };
+    const rectangle = { width: 50, height: 40, scale: 15 };
     const imgW = 300;
-    const setDataScale = useCallback(
-        (i: number) => {
-            if (scale + i < 0 || scale + i >= scales.length) return;
-            setScale(scale + i);
-        },
-        [scale, scales.length]
-    );
 
     useEffect(() => {
         if (show === true) {
             setShowElememt(true);
         } else {
             setTimeout(() => {
-                setScale(0);
-                setRotate(0);
                 setShowElememt(false);
             }, 200);
         }
@@ -67,35 +47,10 @@ const ShowImage = (props: ShowImageProps) => {
         return imgW * rectangle.scale + "px ";
     }, [rectangle.scale]);
 
-    useEffect(() => {
-        console.log("ref", imgRef.current);
-        // if (imgRef.current)
-        //     let offset = imgRef.current.getBoundingClientRect()
-
-        // const img = document.getElementById("myimage");
-        // console.log(img);
-
-        // if (img) {
-        //     const offset = img.getBoundingClientRect();
-        //     // const cx = result.width / rectangle.width;
-        //     // const cy = result.height / rectangle.height;
-        //     setBgrSize(
-        //         offset.width * rectangle.scale +
-        //             "px " +
-        //             offset.height * rectangle.scale +
-        //             "px"
-        //     );
-        // }
-    }, []);
-
-    //_________________________
     const changePosition = useCallback(
         (e: any) => {
-            e.preventDefault();
-            // const offset = e.target.getBoundingClientRect();
-            const img = document.getElementById("myimage");
-            if (img) {
-                const offset = img.getBoundingClientRect();
+            const offset = imgRef.current?.getBoundingClientRect();
+            if (offset) {
                 let top = e.clientY - offset.top - rectangle.height / 2;
                 if (top + rectangle.height > offset.height)
                     top = offset.height - rectangle.height;
@@ -106,14 +61,6 @@ const ShowImage = (props: ShowImageProps) => {
                     left = offset.width - rectangle.width;
                 if (left < 0) left = 0;
                 setPosition({ left: left, top: top });
-                // const cx = result.width / rectangle.width;
-                // const cy = result.height / rectangle.height;
-                setBgrSize(
-                    offset.width * rectangle.scale +
-                        "px " +
-                        offset.height * rectangle.scale +
-                        "px"
-                );
                 setBgrPosition(
                     "-" +
                         left * rectangle.scale +
@@ -137,24 +84,28 @@ const ShowImage = (props: ShowImageProps) => {
         >
             <div onClick={onClose} className="close-modal-img"></div>
             <div className="show-modal-img">
-                <div
-                    onMouseMove={changePosition}
-                    className="img-zoom-container"
-                >
-                    <img
-                        ref={imgRef}
-                        id="myimage"
-                        src={src}
-                        alt={alt}
-                        width={imgW}
-                    ></img>
+                <div>
                     <div
-                        style={{ ...position, ...rectangle }}
-                        className="img-zoom-lens"
-                    ></div>
+                        onMouseMove={changePosition}
+                        className="img-zoom-container"
+                    >
+                        <img
+                            ref={imgRef}
+                            src={src}
+                            alt={alt}
+                            width={imgW}
+                        ></img>
+                        <div
+                            style={{
+                                ...position,
+                                ...rectangle,
+                            }}
+                            className="img-zoom-lens"
+                        ></div>
+                    </div>
                 </div>
+
                 <div
-                    id="myresult"
                     style={{
                         backgroundImage: `url('${src}')`,
                         backgroundSize: getBgrSize,
@@ -164,39 +115,9 @@ const ShowImage = (props: ShowImageProps) => {
                     }}
                     className="img-zoom-result"
                 ></div>
-
-                {/* <img
-                    style={{
-                        transform: `rotate(${rotate}deg) scale(${scales[scale]},${scales[scale]})`,
-                    }}
-                    src={src}
-                    alt={alt}
-                /> */}
             </div>
 
             <div className="btn-action-img">
-                <span onClick={() => setRotate(rotate - 90)}>
-                    <MdRotateLeft />
-                </span>
-                <span onClick={() => setRotate(rotate + 90)}>
-                    <MdRotateRight />
-                </span>
-                <span
-                    onClick={() => setDataScale(-1)}
-                    className={scale === 0 ? "btn-action-img-disable" : ""}
-                >
-                    <MdZoomIn />
-                </span>
-                <span
-                    onClick={() => setDataScale(+1)}
-                    className={
-                        scale === scales.length - 1
-                            ? "btn-action-img-disable"
-                            : ""
-                    }
-                >
-                    <MdZoomOut />
-                </span>
                 <span onClick={onClose}>
                     <MdClose />
                 </span>

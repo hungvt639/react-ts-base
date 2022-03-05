@@ -80,6 +80,10 @@
         .show-modal-img {
             z-index: 1002;
             max-width: calc(100% - 100px);
+            display: flex;
+            background-color: #909090;
+            padding: 20px;
+            border-radius: 5px;
         }
         .btn-action-img {
             position: fixed;
@@ -107,22 +111,22 @@
     .modal-img-not-view {
         animation: _images-modal-not-view 0.2s ease forwards;
     }
+    .img-zoom-container {
+        position: relative;
+        margin-right: 10px;
+        .img-zoom-lens {
+            position: absolute;
+            border: 1px solid #d4d4d4;
+        }
+    }
+
+    .img-zoom-result {
+        border: 1px solid #d4d4d4;
+        width: 300px;
+        height: 300px;
+        margin-left: 50px;
+    }
 }
 ._images_zoom:hover .preview {
     opacity: 1;
-}
-
-.img-zoom-container {
-    position: relative;
-    .img-zoom-lens {
-        position: absolute;
-        border: 1px solid #d4d4d4;
-    }
-}
-
-.img-zoom-result {
-    border: 1px solid #d4d4d4;
-    /*set the size of the result div:*/
-    width: 300px;
-    height: 300px;
 }
