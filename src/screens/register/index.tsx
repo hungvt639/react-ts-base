@@ -20,7 +20,7 @@ const Register = () => {
     } = useRegister();
 
     return (
-        <div className="register">
+        <div className="_register">
             <div className="forms_">
                 <h1>Đăng ký</h1>
                 <form onSubmit={handleSubmit(onSubmit)} className="form_">

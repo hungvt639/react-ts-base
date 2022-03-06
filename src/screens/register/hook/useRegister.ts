@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { checkRePassword, validateEmail } from "../../../utils/validate";
 import API from "../../../api";
 import { DataRegister, ResponseRegister } from "../../../interface/api/UserAPI";
@@ -13,41 +13,42 @@ interface DataFormRegister extends DataRegister {
 }
 
 const useRegister = () => {
+    const history = useHistory();
+
     const [valiUsername, setValiUsername] = useState<boolean>(false);
     const [valiPassword, setValiPassword] = useState<boolean>(false);
     const [valiRePassword, setValiRePassword] = useState<boolean>(false);
     const [valiEmail, setValiEmail] = useState<boolean>(false);
 
-    const history = useHistory();
-
-    async function onSubmit(data: DataFormRegister) {
-        console.log("data", data);
-
-        setValiUsername(!data.username);
-        setValiPassword(!data.password);
-        setValiRePassword(!checkRePassword(data.password, data.rePassword));
-        setValiEmail(!validateEmail(data.email));
-        if (
-            data.username &&
-            data.password &&
-            data.rePassword &&
-            data.email &&
-            validateEmail(data.email) &&
-            checkRePassword(data.password, data.rePassword)
-        ) {
-            try {
-                const res: AxiosResponse<ResponseRegister> =
-                    await API.user.register(data);
-                console.log(res);
-                notify.success(
-                    "Đăng ký tài khoản thành công, vui lòng đăng nhập để sử dụng dịch vụ"
-                );
-                history.push(LOGIN);
-            } catch (err) {
-                errorAPI(err);
+    const onSubmit = useCallback(
+        async (data: DataFormRegister) => {
+            setValiUsername(!data.username);
+            setValiPassword(!data.password);
+            setValiRePassword(!checkRePassword(data.password, data.rePassword));
+            setValiEmail(!validateEmail(data.email));
+            if (
+                data.username &&
+                data.password &&
+                data.rePassword &&
+                data.email &&
+                validateEmail(data.email) &&
+                checkRePassword(data.password, data.rePassword)
+            ) {
+                try {
+                    const res: AxiosResponse<ResponseRegister> =
+                        await API.user.register(data);
+                    console.log(res);
+                    notify.success(
+                        "Đăng ký tài khoản thành công, vui lòng đăng nhập để sử dụng dịch vụ"
+                    );
+                    history.push(LOGIN);
+                } catch (err) {
+                    errorAPI(err);
+                }
             }
-        }
-    }
+        },
+        [history]
+    );
 
     return {
         valiUsername,
@@ -61,4 +62,5 @@ const useRegister = () => {
         onSubmit,
     };
 };
+
 export default useRegister;
