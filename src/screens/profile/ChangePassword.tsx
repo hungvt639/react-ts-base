@@ -1,20 +1,16 @@
-import { changePassword } from "./function";
-import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import ValidateNotification from "../../components/ValidateNotification";
+import useChangePassword, {
+    DataValiChangePassword,
+} from "./hook/useChangePassword";
 
 const ChangePassword = () => {
     const { register, handleSubmit, reset } = useForm();
-    const [showValidate, setShowValidate] = useState({
-        oldPassword: false,
-        password: false,
-        rePassword: false,
-        checkRePassword: false,
-    });
+    const { showValidate, changePassword } = useChangePassword();
     return (
         <form
-            onSubmit={handleSubmit((data: any) =>
-                changePassword(data, setShowValidate, reset)
+            onSubmit={handleSubmit((data: DataValiChangePassword) =>
+                changePassword(data, reset)
             )}
         >
             <div className="flex-column old-password">

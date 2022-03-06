@@ -1,70 +1,26 @@
-import "./profile.scss";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import "./style.scss";
+import { useSelector } from "react-redux";
 import { AppState } from "../../interface/redux";
 import Avatar from "./Avatar";
 import Modal from "../../components/modal";
 import EditProfile from "./EditProfile";
-import { FriendInterface, UserInterface } from "../../interface";
 import ChangePassword from "./ChangePassword";
-import { errorAPI } from "../../components/Error";
-import API from "../../api";
 import UserAction from "./UserAction";
-import { getIdMessage } from "./function";
-import { useHistory } from "react-router-dom";
-import { MESSAGE } from "../../router/route";
-import action from "../../store/actions";
+import useProfile from "./hook/useProfile";
+import useEditProfile from "./hook/useEditProfile";
 
 const Profile = (props: any) => {
     const _id = props.match.params.id;
-    const history = useHistory();
-    const [showEdit, setShowEdit] = useState<boolean>(false);
-    const [profile, setProfile] = useState<UserInterface | undefined>();
+
+    const { profile } = useProfile(_id);
+    const { showEdit, setShowEdit } = useEditProfile();
     const idUser = useSelector((state: AppState) => state.userState.user?._id);
-    const user = useSelector((state: AppState) => state.userState.user);
-    const token = useSelector((state: AppState) => state.userState.token);
 
-    const friendList = useSelector(
-        (state: AppState) => state.userState.user?.friends
-    );
-
-    useEffect(() => {
-        async function fetchUser() {
-            if (_id === idUser) {
-                //user
-                setProfile(user);
-            } else {
-                //khách
-                try {
-                    const res = await API.user.getUser(_id, "");
-                    setProfile(res.data);
-                } catch (e) {
-                    errorAPI(e);
-                }
-            }
-        }
-        fetchUser();
-    }, [_id, idUser, user]);
-    const dispatch = useDispatch();
-    function setListFriend(friends: FriendInterface[]) {
-        dispatch(action.setFriends(friends));
-    }
-    async function goToMessage() {
-        const messId = await getIdMessage(_id);
-        if (messId) {
-            history.push(`${MESSAGE}/${messId}`);
-        }
-    }
-    // const friend = user?.friends?.filter((f) => f._id === _id);
     return (
-        <div className="profile">
+        <div className="_profile">
             <div className="show-profile display-flex">
                 <div className="left center">
-                    <Avatar
-                        isUser={_id === idUser}
-                        user={profile}
-                        token={token}
-                    />
+                    <Avatar isUser={_id === idUser} user={profile} />
                 </div>
                 <div className="right">
                     <div className="right-top">
@@ -112,12 +68,7 @@ const Profile = (props: any) => {
                         {idUser === _id ? (
                             <ChangePassword />
                         ) : (
-                            <UserAction
-                                _id={_id}
-                                friendList={friendList}
-                                setListFriend={setListFriend}
-                                goToMessage={goToMessage}
-                            />
+                            <UserAction _id={_id} />
                         )}
                     </div>
                 </div>

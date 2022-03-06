@@ -1,50 +1,18 @@
-import { useState } from "react";
 import { UserInterface } from "../../interface";
 import { Upload } from "antd";
-// import { LoadingOutlined } from "@ant-design/icons";
 import ImgCrop from "antd-img-crop";
-import { useDispatch } from "react-redux";
 import ChangeCircleOutlinedIcon from "@mui/icons-material/ChangeCircleOutlined";
 import { BASE_URL, BASE_URL_IMG } from "../../env";
-import notify from "../../components/notify";
 import Image from "../../components/image";
-import action from "../../store/actions";
+import useAvatar from "./hook/useAvatar";
 type propsAvatar = {
     user?: UserInterface;
-    token?: string | null;
     isUser?: boolean;
 };
 const Avatar = (props: propsAvatar) => {
-    const { isUser, user, token } = props;
+    const { isUser, user } = props;
+    const { loading, beforeUpload, changeAvatar, token } = useAvatar(user);
 
-    const dispatch = useDispatch();
-    const [loading, setLoading] = useState<boolean>(false);
-
-    const beforeUpload = (file: File) => {
-        const type = ["image/jpeg", "image/png"];
-        const check = type.includes(file.type);
-        if (!check) {
-            notify.error("Không hỗ trợ loại file này");
-        }
-        return check;
-    };
-    const changeAvatar = (info: any) => {
-        if (info.file.status === "uploading") {
-            setLoading(true);
-            return;
-        }
-        if (info.file.status === "done") {
-            dispatch(
-                action.setUser(
-                    user
-                        ? { ...user, avatar: info.file.response.avatar }
-                        : undefined
-                )
-            );
-            setLoading(false);
-            notify.success("Cập nhật ảnh đại diện thành công");
-        }
-    };
     return (
         <div className="avatar">
             <div className="avatar-img">

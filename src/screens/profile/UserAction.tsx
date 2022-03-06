@@ -1,22 +1,20 @@
 import { STT_FRIEND } from "../../config/const";
-import { FriendInterface } from "../../interface";
-import { acceptFriend, addFriend, unFriend } from "./function";
+import useUser from "./hook/useUser";
 
 type PropsUserAction = {
     _id: string;
-    friendList?: FriendInterface[];
-    setListFriend: (friends: FriendInterface[]) => void;
-    goToMessage: () => Promise<void>;
 };
 const UserAction = (props: PropsUserAction) => {
-    const { _id, friendList, setListFriend, goToMessage } = props;
-    const friend = friendList?.filter((f) => f.idFriend === _id);
+    const { _id } = props;
+    const { goToMessage, friend, acceptFriend, addFriend, unFriend } =
+        useUser(_id);
+
     if (friend?.length) {
         if (friend[0].status === STT_FRIEND.REQUEST_INVITE) {
             return (
                 <>
                     <button
-                        onClick={() => unFriend(_id, setListFriend)}
+                        onClick={() => unFriend(_id)}
                         className="bg-red-800 border-red-800 text-white"
                     >
                         Hủy kết bạn
@@ -28,13 +26,13 @@ const UserAction = (props: PropsUserAction) => {
             return (
                 <>
                     <button
-                        onClick={() => acceptFriend(_id, setListFriend)}
+                        onClick={() => acceptFriend(_id)}
                         className="bg-green-700 border-gray-500 text-white mr-5"
                     >
                         Chấp nhận lời mời kết bạn
                     </button>
                     <button
-                        onClick={() => unFriend(_id, setListFriend)}
+                        onClick={() => unFriend(_id)}
                         className="bg-red-800 border-red-800 text-white"
                     >
                         Hủy
@@ -51,7 +49,7 @@ const UserAction = (props: PropsUserAction) => {
                         Nhắn tin
                     </button>
                     <button
-                        onClick={() => unFriend(_id, setListFriend)}
+                        onClick={() => unFriend(_id)}
                         className="bg-red-800 border-red-800 text-white"
                     >
                         Hủy kết bạn
@@ -62,7 +60,7 @@ const UserAction = (props: PropsUserAction) => {
         return (
             <>
                 <button
-                    onClick={() => addFriend(_id, setListFriend)}
+                    onClick={() => addFriend(_id)}
                     className="bg-blue-400 border-blue-400 text-white"
                 >
                     Kết bạn

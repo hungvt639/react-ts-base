@@ -1,13 +1,9 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-// import { useSelector } from "react-redux";
-// import { AppState } from "../../interface/redux";
+import useEditProfile from "./hook/useEditProfile";
 const EditProfile = () => {
-    // const user = useSelector((state: AppState) => state.userState.user);
     const { /*register,*/ handleSubmit } = useForm();
-    async function editProfile(data: any) {
-        console.log(data);
-    }
+    const { editProfile } = useEditProfile();
     return (
         <form
             className="form-edit_profile"
