@@ -1,65 +1,23 @@
-import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { LOGIN } from "../../router/route";
 import { checkRePassword, validateEmail } from "../../utils/validate";
-import "./register.scss";
-import API from "../../api";
-import { DataRegister, ResponseRegister } from "../../interface/api/UserAPI";
-import { AxiosResponse } from "axios";
-import { useHistory } from "react-router-dom";
-import { errorAPI } from "../../components/Error";
+import "./style.scss";
 import { useForm } from "react-hook-form";
-import notify from "../../components/notify";
-
-interface DataFormRegister extends DataRegister {
-    rePassword: string;
-}
+import useRegister from "./hook/useRegister";
 
 const Register = () => {
     const { register, handleSubmit, getValues } = useForm();
-
-    // const [username, setUsername] = useState<string>("");
-    // const [password, setPassword] = useState<string>("");
-    // const [rePassword, setRePassword] = useState<string>("");
-    // const [email, setEmail] = useState<string>("");
-    // const [first_name, setFirstName] = useState<string>("");
-    // const [last_name, setLastName] = useState<string>("");
-
-    const [valiUsername, setValiUsername] = useState<boolean>(false);
-    const [valiPassword, setValiPassword] = useState<boolean>(false);
-    const [valiRePassword, setValiRePassword] = useState<boolean>(false);
-    const [valiEmail, setValiEmail] = useState<boolean>(false);
-
-    const history = useHistory();
-
-    async function onSubmit(data: DataFormRegister) {
-        console.log("data", data);
-
-        setValiUsername(!data.username);
-        setValiPassword(!data.password);
-        setValiRePassword(!checkRePassword(data.password, data.rePassword));
-        setValiEmail(!validateEmail(data.email));
-        if (
-            data.username &&
-            data.password &&
-            data.rePassword &&
-            data.email &&
-            validateEmail(data.email) &&
-            checkRePassword(data.password, data.rePassword)
-        ) {
-            try {
-                const res: AxiosResponse<ResponseRegister> =
-                    await API.user.register(data);
-                console.log(res);
-                notify.success(
-                    "Đăng ký tài khoản thành công, vui lòng đăng nhập để sử dụng dịch vụ"
-                );
-                history.push(LOGIN);
-            } catch (err) {
-                errorAPI(err);
-            }
-        }
-    }
+    const {
+        valiUsername,
+        setValiUsername,
+        valiPassword,
+        setValiPassword,
+        valiRePassword,
+        setValiRePassword,
+        valiEmail,
+        setValiEmail,
+        onSubmit,
+    } = useRegister();
 
     return (
         <div className="register">
