@@ -6,7 +6,6 @@ import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import store from "./store";
 import "./locales/i18n";
-// import { Connector } from "mqtt-react-hooks";
 
 ReactDOM.render(
     <React.StrictMode>
