@@ -1,7 +1,7 @@
+import "./style.scss";
 import { Fragment } from "react";
 import { REGISTER, SEND_RESET_PASSWORD } from "../../router/route";
 import { Link } from "react-router-dom";
-import "./login.scss";
 import useLogin from "./hook/useLogin";
 const LoginForm = (props: any) => {
     const {
